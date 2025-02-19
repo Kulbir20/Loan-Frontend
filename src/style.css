@@ -1,0 +1,160 @@
+.container1 {
+    width: 100vw; 
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(#2e425b, #182c45);
+}
+
+.loginform {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 22rem;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.loginform h3{
+    color: white;
+    background-color: #f3994b;
+    border-radius: 4rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: xx-large;
+    text-align: center;
+    position: relative;
+    left: 8rem;
+    top: 10px;
+}
+.loginform h4{
+    color: white;
+}
+.loginform p{
+    color: white;
+    text-align: left;
+    position: relative;
+    top: 10px;
+}
+
+.email input,
+.pass input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    background: #ffffff30;
+}
+
+button {
+    background:  #1cbdc1;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #099294;
+}
+
+.forgot {
+    text-align: right;
+    font-size: 14px;
+}
+
+.forgot a {
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.forgot a:hover {
+    text-decoration: underline;
+    color: #ffb3b3;
+}
+
+.user-card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
+    cursor: pointer;
+    background: #f0f8ff;  
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.user-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 25px rgba(0, 0, 0, 0.15);
+    background-color: #f0f0f0;
+}
+
+.user-card .card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    border-radius: 5px solid;
+}
+
+.user-card .card-text {
+    font-size: 1rem;
+    color: #555;
+}
+
+.user-card .card-body {
+    transition: background-color 0.3s ease;
+    background: #a1e5e7;
+}
+
+.user-card1 {
+    background: linear-gradient(90deg, #6c757d 25%, #6c757d 50%, #6c757d 75%);
+    background-size: 200% 100%;
+}
+
+
+.user-card:hover .card-body {
+    background-color: #e0e0e0;
+}
+
+.user-card .card-body strong {
+    color: black;
+}
+
+.user-card .card-body p {
+    margin-bottom: 10px;
+}
+
+.heading
+{
+    font-size: large;
+    text-align: center;
+    height: 3rem;
+}
+.table-body
+{
+    font-size: 1rem;
+}
+
+.table-row
+{
+    clip-path: content-box;
+    border: 5px solid black
+}
+
+
+
+

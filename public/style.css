@@ -1,0 +1,10 @@
+.Carousel-Caption
+{
+    position: absolute;
+    right: 15%;
+    bottom: 1.25rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #fff;
+    text-align: center;
+}
