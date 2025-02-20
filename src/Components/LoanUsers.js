@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import ReactPaginate from "react-paginate";
 
@@ -16,6 +17,7 @@ const LoanUsers = () => {
     const [search, setSearch] = useState('')
     const [dropDowndata, setDropDownData] = useState([]);
     const [selectData, setSelectData] = useState('');
+    const [open, setOpen] = useState(false);
 
     const fetchUsers = async (selectedPage) => {
         try {
@@ -88,16 +90,17 @@ const LoanUsers = () => {
     return (    
         <div className="w-full min-h-screen bg-gradient-to-b from-[#5a7884] to-[#1f4959] flex flex-col">
 
-          <div className="container mx-auto flex-1">
-            <div className="dropdown my-4 relative flex top-[3.8rem] pr-4 ">
-              <button className="btn dropdown-toggle !bg-[#1cbdc1] hover:!bg-[#159a9d] text-black   " type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
+          <div className="dropdown container mx-auto flex-1">
+            <div className="dropdown my-4  flex top-[3.8rem] pr-4 relative ">
+              <div className="relative dropdown">
+              <button className="btn dropdown-toggle !bg-[#1cbdc1] hover:!bg-[#159a9d] text-black   " type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false" >
                 {selectData || "Select User"}
               </button>
               <ul className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{ background: "#1cbdc1" }}>
                 {dropDowndata.length > 0 ? (
                   dropDowndata.map((item, index) => (
                     <li key={index}>
-                      <button className="dropdown-item" type="button" onClick={() => setSelectData(item)}>
+                      <button className="dropdown-item" type="button"  onClick={() => setSelectData(item)} >
                         {item}
                       </button>
                     </li>
@@ -107,11 +110,11 @@ const LoanUsers = () => {
                 )}
               </ul>
             </div>
-            <div className=" my-4 text-center absolute flex top-[3.7rem] left-[12rem] ml-6">
+            <div className=" my-4 text-center absolute flex left-[7rem] top-[-1.8rem] ml-6">
               <input type="search" name="search" placeholder="Enter User Name" value={search} onChange={(e) => setSearch(e.target.value)} className="p-2 rounded border border-gray-300" />
-              <button onClick={searchUser} className="ml-2 bg-#1cbdc1 text-black px-4 py-2 rounded">Search</button>
-            </div>
-            <h1 className="text-center text-light mb-8 text-4xl font-bold ml-10 ">📋 List of Users</h1>
+              <button onClick={searchUser} className="ml-2 bg-[#1cbdc1] text-black px-4 py-2 rounded">Search</button>
+            </div></div>
+            <h1 className="text-center text-light mb-8 text-4xl font-bold ml-10 -mt-2 ">📋 List of Users</h1>
             <div className="table-responsive">
               <table className="table table-striped table-hover table-bordered custom-table">
                 <thead className="table-dark text-center">
@@ -156,14 +159,14 @@ const LoanUsers = () => {
             <div className=" justify-between items-center px-4 py-4">
               <button 
                 onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-                className="#1cbdc1 text-black px-4 py-2 rounded shadow "
+                className="bg-[#1cbdc1] text-black px-4 py-2 rounded shadow "
                 disabled={page === 1}
               >
                 Prev
               </button>
               <button 
                 onClick={() => setPage((prev) => (prev < totalPages ? prev + 1 : prev))}
-                className="bg-#1cbdc1 text-black px-4 py-2 rounded shadow ml-4"
+                className="bg-[#1cbdc1] text-black px-4 py-2 rounded shadow ml-4"
                 disabled={page === totalPages}
               >
                 Next

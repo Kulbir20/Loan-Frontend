@@ -43,7 +43,12 @@
 }
 
 .email input,
-.pass input {
+.pass input,
+.type select,
+.maxamount input,
+.interest input,
+.emi select,
+.eligible input {
     width: 100%;
     padding: 10px;
     border: none;
@@ -64,9 +69,9 @@ button {
     font-size: 18px;
     font-weight: bold;
     transition: all 0.3s ease-in-out;
-}
+} 
 
-button:hover {
+ button:hover {
     background: #099294;
 }
 
