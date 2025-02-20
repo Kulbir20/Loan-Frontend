@@ -1,4 +1,4 @@
-.container1 {
+/* .container1 {
     width: 100vw; 
     height: 100vh; 
     display: flex;
@@ -89,7 +89,7 @@ button {
 .forgot a:hover {
     text-decoration: underline;
     color: #ffb3b3;
-}
+} */
 
 .user-card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;

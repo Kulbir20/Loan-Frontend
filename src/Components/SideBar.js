@@ -56,7 +56,7 @@ const SideBar = () => {
 
       {/* Main Content */}
       <div className="flex-1 ">
-        {activeScreen === "home" && <h2 className="text-2xl font-bold">HomeScreen</h2>}
+        {activeScreen === "home" && <h2 className="text-2xl font-bold">Welcome Admin</h2>}
         {activeScreen === "users" && <LoanUsers />}
         {activeScreen === "offers" && <Offers />}
         {activeScreen === "requests" && <LoanRequest />}
