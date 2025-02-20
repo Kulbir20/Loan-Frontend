@@ -39,14 +39,14 @@ const LoanOffers = () => {
                     onChange={(e) => setLoanName(e.target.value)}
                     required
                     placeholder="Loan Name"
-                    className="w-full p-2 bg-white bg-opacity-20 text-white rounded-md outline-none placeholder:text-black"
+                    className="w-full p-2 bg-white bg-opacity-20 text-black rounded-md outline-none placeholder:text-black"
                 />
                 <select
                     name="type"
                     value={type}
                     onChange={(e) => setType(e.target.value)}
                     required
-                    className="w-full p-2 bg-white  rounded-md outline-none placeholder:text-black"
+                    className="w-full p-2 bg-white text-black rounded-md outline-none placeholder:text-black"
                 >
                     <option value="" className="bg-teal-500 ">Select Loan Type</option>
                     {LoanType.map((item, index) => (
@@ -60,7 +60,7 @@ const LoanOffers = () => {
                     onChange={(e) => setMaxAmount(e.target.value)}
                     required
                     placeholder="Max Amount"
-                    className="w-full p-2 bg-white bg-opacity-20 text-white rounded-md outline-none placeholder:text-black"
+                    className="w-full p-2 bg-white bg-opacity-20 text-black rounded-md outline-none placeholder:text-black"
                 />
                 <input
                     type="text"
@@ -69,7 +69,7 @@ const LoanOffers = () => {
                     onChange={(e) => setInterestRate(e.target.value)}
                     required
                     placeholder="Interest Rate"style={{color:"black"}}
-                    className="w-full p-2 bg-white bg-opacity-20 text-white rounded-md outline-none placeholder:text-black"
+                    className="w-full p-2 bg-white bg-opacity-20 text-black rounded-md outline-none placeholder:text-black"
                 />
                 <select
                     name="emi"
@@ -94,7 +94,7 @@ const LoanOffers = () => {
                                 onChange={(e) => handleConditionChange(index, "condition", e.target.value)}
                                 required
                                 placeholder="Condition"
-                                className="w-full p-2 bg-white bg-opacity-20 text-white rounded-md outline-none mt-1 placeholder:text-black"
+                                className="w-full p-2 bg-white bg-opacity-20 text-black rounded-md outline-none mt-1 placeholder:text-black"
                             />
                             <input
                                 name="value"
@@ -102,7 +102,7 @@ const LoanOffers = () => {
                                 onChange={(e) => handleConditionChange(index, "value", e.target.value)}
                                 required
                                 placeholder="Value"
-                                className="w-full p-2 bg-white bg-opacity-20 text-white rounded-md outline-none mt-2 placeholder:text-black"
+                                className="w-full p-2 bg-white bg-opacity-20 text-black rounded-md outline-none mt-2 placeholder:text-black mb-3"
                             />
                         </div>
                     ))}
