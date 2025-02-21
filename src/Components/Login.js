@@ -12,8 +12,16 @@ const Login = () => {
             var loginData = { email, pass };
             const resp = await axios.post("http://localhost:9000/api/user/login", loginData);
             if (resp.status === 200) {
-                console.log("Login Successfully");
-                navigate('/loanusers');
+                if(resp.data.result.Role==="admin")
+                {
+                    console.log("Login Successfully");
+                    navigate('/sidebar');
+                }
+                else
+                {
+                    console.log("Restricted to Admin")
+                }
+                
             } else {
                 console.log("Some error occurred");
             }
