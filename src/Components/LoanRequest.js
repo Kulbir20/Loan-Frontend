@@ -76,7 +76,7 @@ const LoanRequest = () => {
                                     <td>{loan.UserId?.Email || "N/A"}</td>
                                     <td>{selectedStatus || "N/A"}</td>
                                     <td>
-                                        <Link to={`/viewdetails/${loan.id}`} className="text-blue-500 underline">
+                                        <Link to={`/viewdetails/${loan._id}`} className="text-blue-500 underline">
                                             View Details
                                         </Link>
                                     </td>

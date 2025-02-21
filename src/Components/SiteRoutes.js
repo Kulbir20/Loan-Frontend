@@ -6,6 +6,7 @@ import SideBar from "./SideBar";
 import LoanOffers from "./LoanOffers";
 import Offers from "./Offers";
 import LoanRequest from "./LoanRequest";
+import ViewDetails from "./ViewDetails";
 
 const SiteRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const SiteRoutes = () => {
             <Route path="/loanoffers" element={<LoanOffers/>} />
             <Route path="/offers" element={<Offers/>} />
             <Route path="/loanrequest" element={<LoanRequest/>} />
+            <Route path="/viewdetails/:UserId" element={<ViewDetails/>} />
             
         </Routes>
     );
