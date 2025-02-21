@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import ReactPaginate from "react-paginate";
 
 const LoanUsers = () => {
-    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -17,7 +14,6 @@ const LoanUsers = () => {
     const [search, setSearch] = useState('')
     const [dropDowndata, setDropDownData] = useState([]);
     const [selectData, setSelectData] = useState('');
-    const [open, setOpen] = useState(false);
 
     const fetchUsers = async (selectedPage) => {
         try {

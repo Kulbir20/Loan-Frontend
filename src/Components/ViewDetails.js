@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Card, CardBody } from "react-bootstrap";
+import { Card,} from "react-bootstrap";
 import { useParams } from "react-router";
 
 const ViewDetails = () => {

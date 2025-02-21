@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, CardBody, CardText, CardTitle, Form } from "react-bootstrap";
+import { Card, CardBody, CardText, CardTitle} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Offers = () => {
