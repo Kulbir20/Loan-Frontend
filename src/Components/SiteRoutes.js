@@ -12,6 +12,7 @@ const SiteRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/loanusers" element={<LoanUsers />} />
             <Route path="/userinfo/:id" element={<UserInfo />} />
             <Route path="/sidebar" element={<SideBar />} />

@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { HandCoins, Home, Landmark, Users } from "lucide-react";
+import { HandCoins, Home, Landmark, LogOut, Users } from "lucide-react";
 import LoanUsers from "./LoanUsers"; 
 import Offers from "./Offers";
 import LoanRequest from "./LoanRequest";
+import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
   const [activeScreen, setActiveScreen] = useState("home"); 
   const [collapsed, setCollapsed] = useState(true); 
+  const navigate=useNavigate();
+
+  const onLogout=()=>
+  {
+    localStorage.removeItem('token');
+    navigate("/login")
+  }
 
   return (
     <div className="flex min-h-screen">
@@ -49,6 +57,12 @@ const SideBar = () => {
             text="Loan Requests"
             onClick={() => setActiveScreen("requests")}
             isActive={activeScreen === "requests"}
+            collapsed={collapsed}
+          />
+          <NavItem
+            icon={<LogOut />}
+            text="Logout"
+            onClick={onLogout}
             collapsed={collapsed}
           />
         </nav>

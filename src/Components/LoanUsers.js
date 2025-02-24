@@ -16,19 +16,26 @@ const LoanUsers = () => {
     const [selectData, setSelectData] = useState('');
 
     const fetchUsers = async (selectedPage) => {
-        try {
-            const resp = await axios.get(`http://localhost:9000/api/user/getusers?page=${selectedPage}&limit=${itemsPerPage}`);
-            if (resp.status === 200) {
-                setUsers(resp.data.result);
-                setTotalPages(resp.data.totalPages);
-            } else {
-                console.error("Failed to fetch data");
-            }
-        } catch (err) {
-            console.error("Error fetching users:", err.message);
-        }
-    };
-
+      try {
+          const token = localStorage.getItem("token");
+          const resp = await axios.get(
+              `http://localhost:9000/api/user/getusers?page=${selectedPage}&limit=${itemsPerPage}`,
+              {
+                  headers: { Authorization: `Bearer ${token}` }
+              }
+          );
+  
+          if (resp.status === 200) {
+              setUsers(resp.data.result);
+              setTotalPages(resp.data.totalPages);
+          } else {
+              console.error("Failed to fetch data");
+          }
+      } catch (err) {
+          console.error("Error fetching users:", err.message);
+      }
+  };
+  
     const searchUser = async () => {
         try {
             const field=selectData;

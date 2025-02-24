@@ -10,7 +10,12 @@ const LoanRequest = () => {
 
     const fetchLoanUsers = async () => {
         try {
-            const resp = await axios.get(`http://localhost:9000/api/user/loanusers`);
+            const token = localStorage.getItem("token");
+            const resp = await axios.get(`http://localhost:9000/api/user/loanusers`,
+                {
+                    headers: { Authorization: `Bearer ${token}` }
+                }
+            );
             if (resp.status === 200) {
                 console.log("Loan Applications Found");
                 console.log(resp.data.data);
