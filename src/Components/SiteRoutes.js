@@ -7,6 +7,10 @@ import LoanOffers from "./LoanOffers";
 import Offers from "./Offers";
 import LoanRequest from "./LoanRequest";
 import ViewDetails from "./ViewDetails";
+import HelpCenter from "./HelpCenter";
+import Terms from "./Terms";
+import FAQ from "./FAQ";
+import Blogs from "./Blogs";
 
 const SiteRoutes = () => {
     return (
@@ -20,6 +24,10 @@ const SiteRoutes = () => {
             <Route path="/offers" element={<Offers/>} />
             <Route path="/loanrequest" element={<LoanRequest/>} />
             <Route path="/viewdetails/:UserId" element={<ViewDetails/>} />
+            <Route path="/helpcenter" element={<HelpCenter/>} />
+            <Route path="/terms" element={<Terms/>} />
+            <Route path="/faq" element={<FAQ/>} />
+            <Route path="/blogs" element={<Blogs/>} />
             
         </Routes>
     );

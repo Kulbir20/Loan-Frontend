@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { HandCoins, Home, Landmark, LogOut, Users } from "lucide-react";
+import { CircleHelp, HandCoins, Home, Landmark, LogOut, Logs, MailQuestion, ReceiptText, Users } from "lucide-react";
 import LoanUsers from "./LoanUsers"; 
 import Offers from "./Offers";
 import LoanRequest from "./LoanRequest";
 import { useNavigate } from "react-router-dom";
+import HelpCenter from "./HelpCenter";
+import Terms from "./Terms";
+import FAQ from "./FAQ";
+import Blogs from "./Blogs";
 
 const SideBar = () => {
   const [activeScreen, setActiveScreen] = useState("home"); 
@@ -21,7 +25,7 @@ const SideBar = () => {
       {/* Sidebar */}
       <div
         className={`min-h-screen bg-gradient-to-b from-[#2e425b] to-[#182c45] text-white p-4 flex flex-col transition-all duration-300 ${
-          collapsed ? `w-16{<Users/>}` : "w-64"
+          collapsed ? `w-16{<Users/>}` : "w-66"
         }`}
         onMouseEnter={() => setCollapsed(false)}
         onMouseLeave={() => setCollapsed(true)}
@@ -60,6 +64,34 @@ const SideBar = () => {
             collapsed={collapsed}
           />
           <NavItem
+            icon={<CircleHelp />}
+            text="Help Center"
+            onClick={() => setActiveScreen("help")}
+            isActive={activeScreen === "help"}
+            collapsed={collapsed}
+          />
+          <NavItem
+            icon={<ReceiptText />}
+            text="Terms & Conditions"
+            onClick={() => setActiveScreen("terms")}
+            isActive={activeScreen === "terms"}
+            collapsed={collapsed}
+          />
+          <NavItem
+            icon={<MailQuestion />}
+            text="FAQ"
+            onClick={() => setActiveScreen("faq")}
+            isActive={activeScreen === "faq"}
+            collapsed={collapsed}
+          />
+          <NavItem
+            icon={<Logs />}
+            text="Blogs"
+            onClick={() => setActiveScreen("blogs")}
+            isActive={activeScreen === "blogs"}
+            collapsed={collapsed}
+          />
+          <NavItem
             icon={<LogOut />}
             text="Logout"
             onClick={onLogout}
@@ -74,6 +106,10 @@ const SideBar = () => {
         {activeScreen === "users" && <LoanUsers />}
         {activeScreen === "offers" && <Offers />}
         {activeScreen === "requests" && <LoanRequest />}
+        {activeScreen === "help" && <HelpCenter />}
+        {activeScreen === "terms" && <Terms />}
+        {activeScreen === "faq" && <FAQ />}
+        {activeScreen === "blogs" && <Blogs/>}
       </div>
     </div>
   );
