@@ -33,20 +33,20 @@ const Offers = () => {
     <div className=" mt-4 min-h-screen">
       <div className="mx-auto p-2 relative">
         <h1>Select Loan Type</h1>
-        <button className="bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-[10px] cursor-pointer text-[17px] font-bold absolute ml-48" onClick={AddCondition}>Add More</button>
-        <select value={selectedLoan} onChange={handleLoanChange} className=" p-2 bg-[#1cbdc1]  font-bold text-white rounded-md outline-none cursor-pointer">
+        <select value={selectedLoan} onChange={handleLoanChange} className="relative p-2 bg-[#1cbdc1]  font-bold text-white rounded-md outline-none cursor-pointer mr-16 mt-2">
           {Object.keys(loanOffers).map((loanType) => (
             <option key={loanType} value={loanType}>
               {loanType}
             </option>
           ))}
         </select>
+        <button className="bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-[10px] cursor-pointer text-[17px] font-bold relative " onClick={AddCondition}>Add More</button>
       </div>
 
 
       <div className="mt-3 flex">
         {offers.map((offer, index) => (
-          <Card key={index} className=" bg-gradient-to-b from-[#5a7884] to-[#57a7c6eb] ml-8 mb-3 w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-blue-100 cursor-pointer rounded-[10px] shadow-md border-none font-roboto" >
+          <Card key={index} className="ml-8 mb-3 w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-blue-100 cursor-pointer rounded-[10px] shadow-md border-none font-roboto" >
             <CardBody >
               <CardTitle>{offer.name}</CardTitle>
               <CardText>
