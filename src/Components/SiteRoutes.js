@@ -11,6 +11,8 @@ import HelpCenter from "./HelpCenter";
 import Terms from "./Terms";
 import FAQ from "./FAQ";
 import Blogs from "./Blogs";
+import Feedback from "./Feedback";
+import Policies from "./Policies";
 
 const SiteRoutes = () => {
     return (
@@ -28,6 +30,8 @@ const SiteRoutes = () => {
             <Route path="/terms" element={<Terms/>} />
             <Route path="/faq" element={<FAQ/>} />
             <Route path="/blogs" element={<Blogs/>} />
+            <Route path="/feedback" element={<Feedback/>} />
+            <Route path="/policies" element={<Policies/>} />
             
         </Routes>
     );

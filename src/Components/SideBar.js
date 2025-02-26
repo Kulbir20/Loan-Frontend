@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { CircleHelp, HandCoins, Home, Landmark, LogOut, Logs, MailQuestion, ReceiptText, Users } from "lucide-react";
+import { MdPolicy } from "react-icons/md"
+import { CircleHelp, HandCoins, Home, Landmark, LogOut, Logs, MailQuestion, MessageCircleMore, ReceiptText, Users } from "lucide-react";
 import LoanUsers from "./LoanUsers"; 
 import Offers from "./Offers";
 import LoanRequest from "./LoanRequest";
@@ -8,6 +9,8 @@ import HelpCenter from "./HelpCenter";
 import Terms from "./Terms";
 import FAQ from "./FAQ";
 import Blogs from "./Blogs";
+import Feedback from "./Feedback";
+import Policies from "./Policies";
 
 const SideBar = () => {
   const [activeScreen, setActiveScreen] = useState("home"); 
@@ -92,6 +95,20 @@ const SideBar = () => {
             collapsed={collapsed}
           />
           <NavItem
+            icon={<MessageCircleMore />}
+            text="Feedback"
+            onClick={() => setActiveScreen("feedback")}
+            isActive={activeScreen === "feedback"}
+            collapsed={collapsed}
+          />
+          <NavItem
+            icon={<MdPolicy />}
+            text="Policies"
+            onClick={() => setActiveScreen("policies")}
+            isActive={activeScreen === "policies"}
+            collapsed={collapsed}
+          />
+          <NavItem
             icon={<LogOut />}
             text="Logout"
             onClick={onLogout}
@@ -110,6 +127,8 @@ const SideBar = () => {
         {activeScreen === "terms" && <Terms />}
         {activeScreen === "faq" && <FAQ />}
         {activeScreen === "blogs" && <Blogs/>}
+        {activeScreen === "feedback" && <Feedback/>}
+        {activeScreen === "policies" && <Policies/>}
       </div>
     </div>
   );
