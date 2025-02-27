@@ -97,12 +97,12 @@ const HelpCenter = () => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
+          <button className="bg-[#1cbdc1] border-1 px-2 py-1 text-white text-[1rem] rounded-md mt-2" onClick={closeModal}>
             Cancel
-          </Button>
-          <Button variant="primary" onClick={handleReply}>
+          </button>
+          <button className="bg-[#1cbdc1] border-1 px-2 py-1 text-white text-[1rem] rounded-md mt-2" onClick={handleReply}>
             Submit Reply
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>
