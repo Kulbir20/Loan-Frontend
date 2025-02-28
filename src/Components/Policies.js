@@ -18,7 +18,7 @@ const Policies = () => {
   const [isReading, setIsReading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Handle Editing an Existing Term
+
   const handleEdit = (index) => {
     setEditingIndex(index);
     setNewTerm(policy[index]);
@@ -27,7 +27,7 @@ const Policies = () => {
     setIsAdding(false);
   };
 
-  // Handle Saving Edited Term
+
   const handleSaveEdit = () => {
     const updatedTerms = [...policy];
     updatedTerms[editingIndex] = newTerm;
@@ -35,7 +35,7 @@ const Policies = () => {
     resetForm();
   };
 
-  // Handle Adding a New Term
+ 
   const handleAddNew = () => {
     setNewTerm({ title: "", description: "" });
     setIsAdding(true);
@@ -43,7 +43,6 @@ const Policies = () => {
     setIsReading(false);
   };
 
-  // Handle Saving a New Term
   const handleSaveNew = () => {
     setPolicy([...policy, newTerm]);
     resetForm();
@@ -56,7 +55,6 @@ const Policies = () => {
     }
   };
 
-  // Reset Form
   const resetForm = () => {
     setNewTerm({ title: "", description: "" });
     setEditingIndex(null);

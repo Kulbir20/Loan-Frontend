@@ -39,7 +39,6 @@ const Login = () => {
                 </div>
                 <h4 className="text-white text-lg sm:text-xl font-semibold">Admin Login</h4>
 
-                {/* Show error message if login fails */}
                 {error && <p className="text-red-400 text-sm">{error}</p>}
 
                 <div className="text-left">

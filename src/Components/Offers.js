@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Card, CardBody, CardText, CardTitle, Modal } from "react-bootstrap";
 
-// Main Offers Page
 const Offers = () => {
   const loanOffers = {
     "Personal Loan": {
@@ -33,11 +32,11 @@ const Offers = () => {
   };
 
   const handleAddMore = () => {
-    setShowModal(true); // Show the modal
+    setShowModal(true); 
   };
 
   const handleCloseModal = () => {
-    setShowModal(false); // Close the modal
+    setShowModal(false); 
   };
 
   return (

@@ -15,19 +15,18 @@ const HelpCenter = () => {
   const [currentReply, setCurrentReply] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  // Open the modal and set the selected query index
+
   const openModal = (index) => {
     setSelectedIndex(index);
     setShowModal(true);
   };
 
-  // Close the modal
+
   const closeModal = () => {
     setShowModal(false);
-    setCurrentReply(""); // Clear input field on close
+    setCurrentReply(""); 
   };
 
-  // Handle reply submission
   const handleReply = () => {
     if (currentReply.trim() === "" || selectedIndex === null) return;
 
@@ -37,7 +36,7 @@ const HelpCenter = () => {
       )
     );
 
-    closeModal(); // Close modal after submission
+    closeModal(); 
   };
 
   return (
@@ -58,7 +57,7 @@ const HelpCenter = () => {
                   <strong>Query:</strong> {user.userQuery}
                 </CardText>
 
-                {/* Reply Button (Opens Modal) */}
+           
                 <button
                   onClick={() => openModal(index)}
                   className="bg-[#1cbdc1] border-1 px-3 py-1 text-black text-[1.1rem] rounded-md mt-2 hover:bg-white transition-all ml-auto block"
@@ -66,7 +65,7 @@ const HelpCenter = () => {
                   Reply
                 </button>
 
-                {/* Display the reply if it exists */}
+           
                 {user.reply && (
                   <div className="mt-2 p-2 bg-gray-100 rounded-md">
                     <strong>Reply:</strong> {user.reply}
@@ -78,7 +77,7 @@ const HelpCenter = () => {
         </div>
       </div>
 
-      {/* Reply Modal */}
+     
       <Modal show={showModal} onHide={closeModal} centered>
         <Modal.Header closeButton>
           <Modal.Title>

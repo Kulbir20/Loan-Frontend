@@ -54,7 +54,7 @@ const LoanRequest = () => {
                 </select>
             </div>
 
-            {/* Responsive Table */}
+           
             <div className="overflow-x-auto w-full">
                 <table className="w-full min-w-max border border-gray-300 bg-white rounded-lg table-auto">
                     <thead className="bg-gray-800 text-white text-center text-sm sm:text-base">

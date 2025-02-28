@@ -108,7 +108,7 @@ const LoanUsers = () => {
         </div>
       </div>
 
-      {/* Responsive Table Container */}
+     
       <div className="w-full max-w-5xl overflow-x-auto">
         <table className="w-full border border-gray-300 bg-white rounded-lg min-w-[600px]">
           <thead className="bg-gray-800 text-white text-center">
@@ -148,7 +148,7 @@ const LoanUsers = () => {
         </table>
       </div>
 
-      {/* Pagination */}
+  
       {!searchdata && (
         <div className="flex gap-4 mt-4">
           <button
