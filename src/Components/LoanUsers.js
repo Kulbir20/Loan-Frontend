@@ -110,8 +110,8 @@ const LoanUsers = () => {
 
      
       <div className="w-full max-w-5xl overflow-x-auto">
-        <table className="w-full border border-gray-300 bg-white rounded-lg min-w-[600px]">
-          <thead className="bg-gray-800 text-white text-center">
+        <table className="w-full border border-gray-300 bg-white rounded-lg min-w-[600px] ">
+          <thead className="bg-gray-800 text-white text-center border-collapse">
             <tr>
               <th className="px-4 py-2">Serial No.</th>
               <th className="px-4 py-2">First Name</th>
