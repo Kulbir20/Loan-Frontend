@@ -1,10 +1,9 @@
 import { Navigate } from "react-router-dom";
-import SideBar from "./SideBar";
 
-const ProtectedRoute = () => {
-    const token = localStorage.getItem("token"); // Get token from localStorage
+const ProtectedRoute = ({children}) => {
+    const token = localStorage.getItem("token");
 
-    return token ? <SideBar/> : <Navigate to="/login" />;
+    return token ? children :<><Navigate to="/login" />{console.log("Login is Required")}</> ;
 };
 
 export default ProtectedRoute;

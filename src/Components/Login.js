@@ -19,7 +19,7 @@ const Login = () => {
                 if (result.Role === "admin") {
                     console.log("Login Successfully");
                     localStorage.setItem("token", token); 
-                    navigate('/sidebar');
+                    navigate('/home');
                 } else {
                     setError("Access restricted to Admins only.");
                 }

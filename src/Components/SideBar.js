@@ -1,27 +1,27 @@
 import { useState } from "react";
-import { MdPolicy } from "react-icons/md"
-import { CircleHelp, HandCoins, Home, Landmark, LogOut, Logs, MailQuestion, MessageCircleMore, ReceiptText, Users } from "lucide-react";
-import LoanUsers from "./LoanUsers"; 
-import Offers from "./Offers";
-import LoanRequest from "./LoanRequest";
+import { MdPolicy } from "react-icons/md";
+import {
+  CircleHelp,
+  HandCoins,
+  Home,
+  Landmark,
+  LogOut,
+  Logs,
+  MailQuestion,
+  MessageCircleMore,
+  ReceiptText,
+  Users,
+} from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import HelpCenter from "./HelpCenter";
-import Terms from "./Terms";
-import FAQ from "./FAQ";
-import Blogs from "./Blogs";
-import Feedback from "./Feedback";
-import Policies from "./Policies";
 
 const SideBar = () => {
-  const [activeScreen, setActiveScreen] = useState("home"); 
-  const [collapsed, setCollapsed] = useState(true); 
-  const navigate=useNavigate();
+  const [collapsed, setCollapsed] = useState(true);
+  const navigate = useNavigate();
 
-  const onLogout=()=>
-  {
-    localStorage.removeItem('token');
-    navigate("/login")
-  }
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -41,71 +41,61 @@ const SideBar = () => {
           <NavItem
             icon={<Home />}
             text="Home"
-            onClick={() => setActiveScreen("home")}
-            isActive={activeScreen === "home"}
+            onClick={() => navigate("/home")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<Users />}
             text="List of Users"
-            onClick={() => setActiveScreen("users")}
-            isActive={activeScreen === "users"}
+            onClick={() => navigate("/loanusers")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<HandCoins />}
             text="Loan Offers"
-            onClick={() => setActiveScreen("offers")}
-            isActive={activeScreen === "offers"}
+            onClick={() => navigate("/offers")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<Landmark />}
             text="Loan Requests"
-            onClick={() => setActiveScreen("requests")}
-            isActive={activeScreen === "requests"}
+            onClick={() => navigate("/loanrequest")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<CircleHelp />}
             text="Help Center"
-            onClick={() => setActiveScreen("help")}
-            isActive={activeScreen === "help"}
+            onClick={() => navigate("/helpcenter")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<ReceiptText />}
             text="Terms & Conditions"
-            onClick={() => setActiveScreen("terms")}
-            isActive={activeScreen === "terms"}
+            onClick={() => navigate("/terms")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<MailQuestion />}
             text="FAQ"
-            onClick={() => setActiveScreen("faq")}
-            isActive={activeScreen === "faq"}
+            onClick={() => navigate("/faq")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<Logs />}
             text="Blogs"
-            onClick={() => setActiveScreen("blogs")}
-            isActive={activeScreen === "blogs"}
+            onClick={() => navigate("/blogs")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<MessageCircleMore />}
             text="Feedback"
-            onClick={() => setActiveScreen("feedback")}
-            isActive={activeScreen === "feedback"}
+            onClick={() => navigate("/feedback")}
             collapsed={collapsed}
           />
           <NavItem
             icon={<MdPolicy />}
             text="Policies"
-            onClick={() => setActiveScreen("policies")}
-            isActive={activeScreen === "policies"}
+            onClick={() => navigate("/policies")}
             collapsed={collapsed}
           />
           <NavItem
@@ -116,29 +106,13 @@ const SideBar = () => {
           />
         </nav>
       </div>
-
-      {/* Main Content */}
-      <div className="flex-1 ">
-        {activeScreen === "home" && <h2 className="text-2xl font-bold relative text-center h-[100vh] mt-64">Welcome Admin</h2>}
-        {activeScreen === "users" && <LoanUsers />}
-        {activeScreen === "offers" && <Offers />}
-        {activeScreen === "requests" && <LoanRequest />}
-        {activeScreen === "help" && <HelpCenter />}
-        {activeScreen === "terms" && <Terms />}
-        {activeScreen === "faq" && <FAQ />}
-        {activeScreen === "blogs" && <Blogs/>}
-        {activeScreen === "feedback" && <Feedback/>}
-        {activeScreen === "policies" && <Policies/>}
-      </div>
     </div>
   );
 };
 
-const NavItem = ({ icon, text, onClick, isActive, collapsed }) => (
+const NavItem = ({ icon, text, onClick, collapsed }) => (
   <div
-    className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-all duration-200 ${
-      isActive ? "bg-gray-700" : "hover:bg-gray-800"
-    }`}
+    className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800`}
     onClick={onClick}
   >
     {icon}
@@ -147,3 +121,4 @@ const NavItem = ({ icon, text, onClick, isActive, collapsed }) => (
 );
 
 export default SideBar;
+
