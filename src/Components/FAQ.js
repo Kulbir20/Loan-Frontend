@@ -16,7 +16,6 @@ const FAQ = () => {
   const [isReading, setIsReading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Handle Adding a New FAQ
   const handleAddNew = () => {
     setNewTerm({ questions: "", answers: "" });
     setIsAdding(true);
@@ -24,15 +23,13 @@ const FAQ = () => {
     setIsReading(false);
   };
 
-
-  const handleEdit=(index)=>
-  {
+  const handleEdit = (index) => {
     setEditingIndex(index);
     setNewTerm(faq[index]);
     setIsEditing(true);
     setIsReading(false);
     setIsAdding(false);
-  }
+  };
 
   const handleSaveEdit = () => {
     const updatedTerms = [...faq];
@@ -41,7 +38,6 @@ const FAQ = () => {
     resetForm();
   };
 
-  // Handle Saving a New FAQ
   const handleSaveNew = () => {
     if (!newTerm.questions.trim() || !newTerm.answers.trim()) {
       alert("Please enter both question and answer.");
@@ -52,14 +48,14 @@ const FAQ = () => {
     resetForm();
   };
 
-  // Handle Deleting an FAQ
   const handleDelete = (index) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this FAQ?");
+    const queryToDelete = faq[index].questions;
+    const confirmDelete = window.confirm(`Are you sure you want to delete the FAQ: "${queryToDelete}"?`);
     if (confirmDelete) {
-    setFaq(faq.filter((_, i) => i !== index));}
+      setFaq(faq.filter((_, i) => i !== index));
+    }
   };
 
-  // Reset Form
   const resetForm = () => {
     setNewTerm({ questions: "", answers: "" });
     setIsEditing(false);
@@ -79,11 +75,11 @@ const FAQ = () => {
         </button>
 
         {isReading && (
-          <div className="mt-5 flex flex-wrap">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
             {faq.map((query, index) => (
               <Card
                 key={index}
-                className=" border border-[#b0bec5] ml-8 mb-3 w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+                className="border border-[#b0bec5] w-full transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">
@@ -95,6 +91,7 @@ const FAQ = () => {
                   <button
                     className="mt-2 bg-[#1cbdc1] text-white px-3 py-1 rounded-md cursor-pointer mr-6 font-semibold"
                     onClick={() => handleEdit(index)}
+                    aria-label={`Edit FAQ for "${query.questions}"`}
                   >
                     Edit
                   </button>
@@ -112,7 +109,7 @@ const FAQ = () => {
 
         {(isEditing || isAdding) && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="p-6 bg-white rounded-lg shadow-lg w-96 relative">
+            <div className="p-6 bg-white rounded-lg shadow-lg w-full sm:w-80 md:w-96 lg:w-[500px] relative">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl"
                 onClick={resetForm}
@@ -121,7 +118,7 @@ const FAQ = () => {
               </button>
 
               <h2 className="text-xl font-bold text-[#1e3a5f] text-center">
-                {isEditing ?` ${newTerm.questions}` : "Add New FAQ"}
+                {isEditing ? `${newTerm.questions}` : "Add New FAQ"}
               </h2>
 
               <label className="block mt-3 text-lg">Question</label>
@@ -143,9 +140,10 @@ const FAQ = () => {
               />
 
               <div className="flex justify-center gap-3 mt-4">
-              <button
-                  className="bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
+                <button
+                  className={`bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold ${!newTerm.questions || !newTerm.answers ? "opacity-50 cursor-not-allowed" : ""}`}
                   onClick={isEditing ? handleSaveEdit : handleSaveNew}
+                  disabled={!newTerm.questions.trim() || !newTerm.answers.trim()}
                 >
                   {isEditing ? "Save Changes" : "Save"}
                 </button>

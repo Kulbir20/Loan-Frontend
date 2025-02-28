@@ -14,7 +14,6 @@ const Terms = () => {
   const [isReading, setIsReading] = useState(true);
   const [isAdding, setIsAdding] = useState(false);
 
-  // Handle Editing an Existing Term
   const handleEdit = (index) => {
     setEditingIndex(index);
     setNewTerm(tnc[index]);
@@ -23,7 +22,6 @@ const Terms = () => {
     setIsAdding(false);
   };
 
-  // Handle Saving Edited Term
   const handleSaveEdit = () => {
     const updatedTerms = [...tnc];
     updatedTerms[editingIndex] = newTerm;
@@ -31,7 +29,6 @@ const Terms = () => {
     resetForm();
   };
 
-  // Handle Adding a New Term
   const handleAddNew = () => {
     setNewTerm({ title: "", description: "" });
     setIsAdding(true);
@@ -39,7 +36,6 @@ const Terms = () => {
     setIsReading(false);
   };
 
-  // Handle Saving a New Term
   const handleSaveNew = () => {
     setTNc([...tnc, newTerm]);
     resetForm();
@@ -48,10 +44,9 @@ const Terms = () => {
   const handleDelete = (index) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this FAQ?");
     if (confirmDelete) {
-    setTNc(tnc.filter((_, i) => i !== index));}
+      setTNc(tnc.filter((_, i) => i !== index));
+    }
   };
-
-  // Reset Form
   const resetForm = () => {
     setNewTerm({ title: "", description: "" });
     setEditingIndex(null);
@@ -68,15 +63,15 @@ const Terms = () => {
           Add New Term
         </button>
         {isReading && (
-          <div className="mt-5 flex flex-wrap">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {tnc.map((terms, index) => (
               <Card
                 key={index}
-                className="border border-[#b0bec5] ml-8 mb-3 w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+                className="border border-[#b0bec5] mb-3 w-full sm:w-80 lg:w-72 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">{terms.title}</CardTitle>
-                  <CardText className="text-[#090909]"><strong>Query:</strong> {terms.description}</CardText>
+                  <CardText className="text-[#090909]"><strong>Description:</strong> {terms.description}</CardText>
                   <button 
                     className="mt-2 bg-[#1cbdc1] text-white px-3 py-1 rounded-md cursor-pointer font-semibold mr-6"
                     onClick={() => handleEdit(index)}
@@ -144,7 +139,6 @@ const Terms = () => {
             </div>
           </div>
         )}
-
       </div>
     </div>
   );

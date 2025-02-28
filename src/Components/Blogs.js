@@ -24,46 +24,39 @@ const Blogs = () => {
     const [isAdding, setIsAdding] = useState(false);
     const [editingIndex, setEditingIndex] = useState(null);
 
-    // Handle adding new blog
     const handleAddNew = () => {
         setNewBlog({ title: "", description: "", images: [] });
         setIsAdding(true);
         setEditingIndex(null);
     };
 
-    // Handle saving new blog
     const handleSaveNew = () => {
         if (!newBlog.title.trim() || !newBlog.description.trim()) {
             alert("Please enter both title and description.");
             return;
         }
         if (editingIndex !== null) {
-            // Editing an existing blog
             const updatedBlogs = [...blogs];
             updatedBlogs[editingIndex] = newBlog;
             setBlogs(updatedBlogs);
         } else {
-            // Adding a new blog
             setBlogs([...blogs, newBlog]);
         }
         resetForm();
     };
-    
-    // Handle file upload (Image preview)
+
     const handleFileUpload = (event) => {
         const files = Array.from(event.target.files);
         const imageUrls = files.map((file) => URL.createObjectURL(file));
         setNewBlog((prev) => ({ ...prev, images: [...prev.images, ...imageUrls] }));
     };
 
-    // Handle editing an existing blog
     const handleEdit = (index) => {
         setEditingIndex(index);
         setNewBlog(blogs[index]);
         setIsAdding(true);
     };
 
-    // Handle deleting a blog
     const handleDelete = (index) => {
         const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
         if (confirmDelete) {
@@ -71,7 +64,6 @@ const Blogs = () => {
         }
     };
 
-    // Reset form fields
     const resetForm = () => {
         setNewBlog({ title: "", description: "", images: [] });
         setIsAdding(false);
@@ -79,53 +71,56 @@ const Blogs = () => {
     };
 
     return (
-        <div className="mt-4 min-h-screen">
-            <div className="mx-auto p-2 relative">
-                <h1 className="text-3xl font-bold text-[#1e3a5f]">Blogs</h1>
-                <button
-                    className="mt-3 bg-[#1cbdc1] text-white px-4 py-2 rounded-lg font-bold"
-                    onClick={handleAddNew}
-                >
-                    Add New Blog
-                </button>
+        <div className="mt-4 min-h-screen p-4">
+            <div className="container mx-auto">
+                <h1 className="text-3xl font-bold text-[#1e3a5f] text-center">Blogs</h1>
+                <div className="flex justify-center mt-4">
+                    <button
+                        className="bg-[#1cbdc1] text-white px-4 py-2 rounded-lg font-bold"
+                        onClick={handleAddNew}
+                    >
+                        Add New Blog
+                    </button>
+                </div>
 
-                <div className="mt-5 flex flex-wrap">
+                <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {blogs.map((blog, index) => (
-                        <Card key={index} className="w-80 m-3 p-3 shadow-lg rounded-lg">
-                            <CardBody>
-                                <div className="flex flex-wrap justify-center">
+                        <Card key={index} className="w-full shadow-lg rounded-lg overflow-hidden">
+                            <CardBody className="p-4">
+                                <div className="flex flex-wrap justify-center gap-2">
                                     {blog.images.map((image, imgIndex) => (
                                         <img
                                             key={imgIndex}
                                             src={image}
                                             alt="blog"
-                                            className="w-24 h-24 object-cover m-2.5 rounded-md"
+                                            className="w-24 h-24 object-cover rounded-md"
                                         />
-
                                     ))}
                                 </div>
                                 <CardTitle className="text-xl font-bold mt-3">{blog.title}</CardTitle>
-                                <CardText>{blog.description}</CardText>
-                                <button
-                                    className="mt-2 bg-[#1cbdc1] text-white px-3 py-1 rounded-md cursor-pointer mr-6 font-semibold"
-                                    onClick={() => handleEdit(index)}
-                                >
-                                    Edit
-                                </button>
-                                <button
-                                    className="mt-2 bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer font-semibold"
-                                    onClick={() => handleDelete(index)}
-                                >
-                                    Delete
-                                </button>
+                                <CardText className="text-gray-600">{blog.description}</CardText>
+                                <div className="flex justify-between mt-4">
+                                    <button
+                                        className="bg-[#1cbdc1] text-white px-3 py-1 rounded-md font-semibold"
+                                        onClick={() => handleEdit(index)}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        className="bg-red-500 text-white px-3 py-1 rounded-md font-semibold"
+                                        onClick={() => handleDelete(index)}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
                             </CardBody>
                         </Card>
                     ))}
                 </div>
 
                 {isAdding && (
-                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                        <div className="p-6 bg-white rounded-lg shadow-lg w-96 relative">
+                    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
+                        <div className="p-6 bg-white rounded-lg shadow-lg w-full max-w-md">
                             <h2 className="text-xl font-bold text-center">
                                 {editingIndex !== null ? "Edit Blog" : "Add New Blog"}
                             </h2>
@@ -155,10 +150,9 @@ const Blogs = () => {
                                 accept="image/*"
                             />
 
-
-                            <div className="flex flex-wrap mt-2 justify-center">
+                            <div className="flex flex-wrap mt-2 justify-center gap-2">
                                 {newBlog.images.map((image, index) => (
-                                    <div key={index} className="relative m-1">
+                                    <div key={index} className="relative">
                                         <img
                                             src={image}
                                             alt="Blog-Image"
@@ -167,7 +161,6 @@ const Blogs = () => {
                                     </div>
                                 ))}
                             </div>
-
 
                             <div className="flex justify-between mt-4">
                                 <button

@@ -50,9 +50,10 @@ const Policies = () => {
   };
 
   const handleDelete = (index) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this FAQ?");
+    const confirmDelete = window.confirm("Are you sure you want to delete this policy?");
     if (confirmDelete) {
-    setPolicy(policy.filter((_, i) => i !== index));}
+      setPolicy(policy.filter((_, i) => i !== index));
+    }
   };
 
   // Reset Form
@@ -72,15 +73,15 @@ const Policies = () => {
           Add New Term
         </button>
         {isReading && (
-          <div className="mt-5 flex flex-wrap">
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {policy.map((policies, index) => (
               <Card
                 key={index}
-                className="border border-[#b0bec5] ml-8 mb-3 w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+                className="border border-[#b0bec5] transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">{policies.title}</CardTitle>
-                  <CardText className="text-[#090909] text-md"> {policies.description}</CardText>
+                  <CardText className="text-[#090909] text-md">{policies.description}</CardText>
                   <button 
                     className="mt-2 bg-[#1cbdc1] text-white px-3 py-1 rounded-md cursor-pointer font-semibold mr-6"
                     onClick={() => handleEdit(index)}

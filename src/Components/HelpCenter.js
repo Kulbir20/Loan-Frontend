@@ -44,11 +44,11 @@ const HelpCenter = () => {
     <div className="mt-4 min-h-screen">
       <div className="mx-auto p-2 relative">
         <h1 className="text-3xl font-bold text-[#1e3a5f]">Help Center</h1>
-        <div className="mt-5 flex flex-wrap">
+        <div className="mt-5 flex flex-wrap justify-center md:justify-start">
           {queries.map((user, index) => (
             <Card
               key={index}
-              className=" border border-[#b0bec5] ml-8 mb-3 w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+              className="border border-[#b0bec5] ml-4 mb-3 w-full sm:w-80 md:w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
             >
               <CardBody>
                 <CardTitle className="text-[#333] text-xl font-semibold">
@@ -87,7 +87,8 @@ const HelpCenter = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="mb-2">
-        {selectedIndex !== null ? queries[selectedIndex].userQuery : "Reply"}</div>
+            {selectedIndex !== null ? queries[selectedIndex].userQuery : "Reply"}
+          </div>
           <input
             type="text"
             value={currentReply}
@@ -97,12 +98,12 @@ const HelpCenter = () => {
           />
         </Modal.Body>
         <Modal.Footer>
-          <button className="bg-[#1cbdc1] border-1 px-2 py-1 text-white text-[1rem] rounded-md mt-2" onClick={closeModal}>
+          <Button variant="secondary" onClick={closeModal}>
             Cancel
-          </button>
-          <button className="bg-[#1cbdc1] border-1 px-2 py-1 text-white text-[1rem] rounded-md mt-2" onClick={handleReply}>
+          </Button>
+          <Button variant="primary" onClick={handleReply}>
             Submit Reply
-          </button>
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>
