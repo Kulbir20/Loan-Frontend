@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoanUsers = () => {
+
+  const userdata=["fullName","phoneNumber","email","panNumber","aadharNumber"]
   const [users, setUsers] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -10,19 +12,18 @@ const LoanUsers = () => {
   const itemsPerPage = 10;
   const [searchdata, setSearchData] = useState("");
   const [search, setSearch] = useState("");
-  const [dropDowndata, setDropDownData] = useState([]);
+  const [dropDowndata, setDropDownData] = useState(userdata);
   const [selectData, setSelectData] = useState("");
 
   useEffect(() => {
     fetchUsers(page);
-    userData();
   }, [page]);
 
   const fetchUsers = async (selectedPage) => {
     try {
       const token = localStorage.getItem("token");
       const resp = await axios.get(
-        `http://localhost:9000/api/user/getusers?page=${selectedPage}&limit=${itemsPerPage}`,
+        `http://localhost:5000/api/admin/getusers?page=${selectedPage}&limit=${itemsPerPage}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -40,7 +41,7 @@ const LoanUsers = () => {
   const searchUser = async () => {
     if (!selectData || !search) return;
     try {
-      const resp = await axios.get("http://localhost:9000/api/user/searchuser", {
+      const resp = await axios.get("http://localhost:5000/api/admin/searchuser", {
         params: { field: selectData, value: search },
       });
 
@@ -52,23 +53,16 @@ const LoanUsers = () => {
     }
   };
 
-  const userData = async () => {
-    try {
-      const resp = await axios.get(`http://localhost:9000/api/user/userdata`);
-      if (resp.status === 200) {
-        setDropDownData(resp.data.result);
-      }
-    } catch (err) {
-      console.error("Error fetching data:", err.message);
-    }
-  };
-
   const toggleVisibility = (index, field) => {
     setVisible((prev) => ({
       ...prev,
-      [index]: { ...prev[index], [field]: !(prev[index]?.[field] || false) },
+      [index]: {
+        ...prev[index],
+        [field]: !prev[index]?.[field]
+      },
     }));
   };
+
 
   return (
     <div className="w-full h-full bg-gradient-to-b from-[#5a7884] to-[#1f4959] flex flex-col items-center px-4 py-6">
@@ -108,14 +102,13 @@ const LoanUsers = () => {
         </div>
       </div>
 
-     
+
       <div className="w-full max-w-5xl overflow-x-auto">
         <table className="w-full border border-gray-300 bg-white rounded-lg min-w-[600px] ">
           <thead className="bg-gray-800 text-white text-center border-collapse">
             <tr>
               <th className="px-4 py-2">Serial No.</th>
-              <th className="px-4 py-2">First Name</th>
-              <th className="px-4 py-2">Last Name</th>
+              <th className="px-4 py-2">Full Name</th>
               <th className="px-4 py-2">Contact</th>
               <th className="px-4 py-2">Email</th>
               <th className="px-4 py-2">Pan Card</th>
@@ -126,29 +119,30 @@ const LoanUsers = () => {
             {(searchdata ? [searchdata] : users).map((item, index) => (
               <tr key={index} className="border-t">
                 <td className="px-4 py-2">{(page - 1) * itemsPerPage + index + 1}</td>
-                <td className="px-4 py-2">{item.FirstName}</td>
-                <td className="px-4 py-2">{item.LastName}</td>
-                <td className="px-4 py-2">{item.ContactNumber}</td>
-                <td className="px-4 py-2">{item.Email}</td>
+                <td className="px-4 py-2">{item.fullName}</td>
+                <td className="px-4 py-2">{item.phoneNumber}</td>
+                <td className="px-4 py-2">{item.email}</td>
                 <td className="px-4 py-2">
-                  {visible[index]?.PanCard ? item.PanCard : "****"}
-                  <button className="ml-2" onClick={() => toggleVisibility(index, "PanCard")}>
-                    {visible[index]?.PanCard ? <FaEyeSlash /> : <FaEye />}
+                  {visible[index]?.panNumber ? item.panNumber : "****"}
+                  <button className="ml-2" onClick={() => toggleVisibility(index, "panNumber")}>
+                    {visible[index]?.panNumber ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </td>
+
                 <td className="px-4 py-2">
-                  {visible[index]?.AdhaarCard ? item.AdhaarCard : "****"}
-                  <button className="ml-2" onClick={() => toggleVisibility(index, "AdhaarCard")}>
-                    {visible[index]?.AdhaarCard ? <FaEyeSlash /> : <FaEye />}
+                  {visible[index]?.aadharNumber ? item.aadharNumber : "****"}
+                  <button className="ml-2" onClick={() => toggleVisibility(index, "aadharNumber")}>
+                    {visible[index]?.aadharNumber ? <FaEyeSlash /> : <FaEye />}
                   </button>
                 </td>
+
               </tr>
             ))}
           </tbody>
         </table>
       </div>
 
-  
+
       {!searchdata && (
         <div className="flex gap-4 mt-4">
           <button
