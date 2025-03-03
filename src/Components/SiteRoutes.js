@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import LoanUsers from "./LoanUsers";
 import UserInfo from "./UserInfo";
 import Login from "./Login";
@@ -14,46 +14,47 @@ import Blogs from "./Blogs";
 import Feedback from "./Feedback";
 import Policies from "./Policies";
 import ProtectedRoute from "./ProtectedRoute";
+import { useEffect, useState } from "react";
+import ContentManager from "./ContentManager";
 
 const SiteRoutes = () => {
     const location = useLocation();
-    const isAuthenticated = !!localStorage.getItem('token');  // Check if the user is authenticated
+    const [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem("token"));
+
+    useEffect(() => {
+        setIsAuthenticated(localStorage.getItem("token")); 
+    }, [location]);
+
+    if (!isAuthenticated && location.pathname !== "/") {
+        return <Navigate to="/" replace />;
+    }
 
     return (
-        <>
-            {/* If the user is not authenticated, render the Login route */}
-            {!isAuthenticated ? (
+        <div className="flex">
+            {isAuthenticated && <SideBar />}
+            <div className="flex-1">
                 <Routes>
-                    <Route path="/" element={<Login />} />
-                    <Route path="/login" element={<Login />} />
-                </Routes>
-            ) : (
-                // If the user is authenticated, render Sidebar and protected routes
-                <div className="flex">
-                    {/* Sidebar always visible if user is authenticated */}
-                    <SideBar />
+                    <Route path="/" element={isAuthenticated ? <Navigate to="/home" replace /> : <Login />} />
 
-                    <div className="flex-1">
-                        <Routes location={location}>
-                            {/* Protected Routes */}
-                            <Route path="/home" element={<ProtectedRoute><h2>Welcome Admin</h2></ProtectedRoute>} />
-                            <Route path="/loanusers" element={<ProtectedRoute><LoanUsers /></ProtectedRoute>} />
-                            <Route path="/userinfo/:id" element={<ProtectedRoute><UserInfo /></ProtectedRoute>} />
-                            <Route path="/loanoffers" element={<ProtectedRoute><LoanOffers /></ProtectedRoute>} />
-                            <Route path="/offers" element={<ProtectedRoute><Offers /></ProtectedRoute>} />
-                            <Route path="/loanrequest" element={<ProtectedRoute><LoanRequest /></ProtectedRoute>} />
-                            <Route path="/viewdetails/:UserId" element={<ViewDetails />} />
-                            <Route path="/helpcenter" element={<ProtectedRoute><HelpCenter /></ProtectedRoute>} />
-                            <Route path="/terms" element={<ProtectedRoute><Terms /></ProtectedRoute>} />
-                            <Route path="/faq" element={<ProtectedRoute><FAQ /></ProtectedRoute>} />
-                            <Route path="/blogs" element={<ProtectedRoute><Blogs /></ProtectedRoute>} />
-                            <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
-                            <Route path="/policies" element={<ProtectedRoute><Policies /></ProtectedRoute>} />
-                        </Routes>
-                    </div>
-                </div>
-            )}
-        </>
+                    <Route path="/home" element={<ProtectedRoute><h2>Welcome Admin</h2></ProtectedRoute>} />
+                    <Route path="/loanusers" element={<ProtectedRoute><LoanUsers /></ProtectedRoute>} />
+                    <Route path="/userinfo/:id" element={<ProtectedRoute><UserInfo /></ProtectedRoute>} />
+                    <Route path="/loanoffers" element={<ProtectedRoute><LoanOffers /></ProtectedRoute>} />
+                    <Route path="/offers" element={<ProtectedRoute><Offers /></ProtectedRoute>} />
+                    <Route path="/loanrequest" element={<ProtectedRoute><LoanRequest /></ProtectedRoute>} />
+                    <Route path="/viewdetails/:UserId" element={<ProtectedRoute><ViewDetails /></ProtectedRoute>} />
+                    <Route path="/helpcenter" element={<ProtectedRoute><HelpCenter /></ProtectedRoute>} />
+                    <Route path="/terms" element={<ProtectedRoute><Terms /></ProtectedRoute>} />
+                    <Route path="/faq" element={<ProtectedRoute><FAQ /></ProtectedRoute>} />
+                    <Route path="/blogs" element={<ProtectedRoute><Blogs /></ProtectedRoute>} />
+                    <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
+                    <Route path="/policies" element={<ProtectedRoute><Policies /></ProtectedRoute>} />
+                    <Route path="/content-manager" element={<ProtectedRoute><ContentManager /></ProtectedRoute>} />
+
+                    <Route path="*" element={<Navigate to="/" replace />} />
+                </Routes>
+            </div>
+        </div>
     );
 };
 

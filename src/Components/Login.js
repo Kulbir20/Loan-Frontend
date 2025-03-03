@@ -4,19 +4,19 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const onLogin = async () => {
         try {
-            const loginData = { Email: email, Password: pass }; 
-            const resp = await axios.post("http://localhost:9000/api/user/login", loginData);
+            const loginData = {  email, password }; 
+            const resp = await axios.post("http://localhost:5000/api/admin/adminlogin", loginData);
 
-            if (resp.status === 200 && resp.data.token && resp.data.result) {
-                const { token, result } = resp.data;
+            if (resp.status === 200 && resp.data.token && resp.data.admin) {
+                const { token, admin } = resp.data;
 
-                if (result.Role === "admin") {
+                if (admin.role === "admin") {
                     console.log("Login Successfully");
                     localStorage.setItem("token", token); 
                     navigate('/home');
@@ -27,7 +27,7 @@ const Login = () => {
                 setError("Invalid response from server.");
             }
         } catch (err) {
-            setError(err.response?.data?.msg || "Login failed. Please check your credentials.");
+            setError(err.response?.data?.message || "Login failed. Please check your credentials.");
         }
     };
 
@@ -57,8 +57,8 @@ const Login = () => {
                     <input 
                         type="password" 
                         name="password" 
-                        value={pass} 
-                        onChange={(e) => setPass(e.target.value)} 
+                        value={password} 
+                        onChange={(e) => setPassword(e.target.value)} 
                         required 
                         className="w-full p-3 sm:p-4 rounded-xl bg-white/20 text-white outline-none"
                     />
