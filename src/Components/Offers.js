@@ -59,16 +59,16 @@ const Offers = () => {
   };
 
   return (
-    <div className="mt-4 min-h-screen">
+    <div className=" h-full p-4 bg-[#FFF6F7]">
       <div className="mx-auto p-2 relative">
         <h1>Select Loan Type</h1>
         <div className="flex items-center mt-4 justify-center">
-          <select value={selectedLoan} onChange={handleLoanChange} className="p-2 bg-teal-500 text-white rounded-md">
+          <select value={selectedLoan} onChange={handleLoanChange} className="p-2 bg-[#242224] text-[#FFFFFF] rounded-md">
             {Object.keys(initialLoanOffers).map((loanType) => (
               <option key={loanType} value={loanType}>{loanType}</option>
             ))}
           </select>
-          <button className="ml-4 bg-teal-500 text-white px-4 py-2 rounded-md" onClick={handleAddMore}>
+          <button className="ml-4 bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded-md" onClick={handleAddMore}>
             Add More
           </button>
         </div>
@@ -85,10 +85,10 @@ const Offers = () => {
                 <strong>Description:</strong> {offer.description}
               </CardText>
               <div className="flex justify-between mt-2">
-                <button onClick={() => handleEditOffer(index)} className="bg-teal-500  text-white py-1 px-2 rounded">
+                <button onClick={() => handleEditOffer(index)} className="mt-2 bg-[#242224] text-[#ffffff] px-3 py-1 rounded-md cursor-pointer font-semibold mr-6">
                   Edit
                 </button>
-                <button onClick={() => handleDeleteOffer(index)} className="bg-red-500 text-white py-1 px-2 rounded">
+                <button onClick={() => handleDeleteOffer(index)} className="mt-2 bg-[#E21D27] text-[#ffffff] px-3 py-1 rounded-md cursor-pointer font-semibold">
                   Delete
                 </button>
               </div>
@@ -103,11 +103,11 @@ const Offers = () => {
         </Modal.Header>
         <Modal.Body>
           <div className="flex flex-col gap-4">
-            <input type="text" className="border border-black p-2 rounded" placeholder="Loan Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
-            <input type="text" className="border border-black p-2 rounded" placeholder="Interest Rate" value={formData.rate} onChange={(e) => setFormData({ ...formData, rate: e.target.value })} />
-            <input type="text" className="border border-black p-2 rounded" placeholder="Tenure" value={formData.tenure} onChange={(e) => setFormData({ ...formData, tenure: e.target.value })} />
-            <textarea className="border border-black p-2 rounded" placeholder="Description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
-            <button onClick={handleSubmit} className="bg-teal-500 text-white py-2 rounded">
+            <input type="text" className="border border-black p-2 rounded placeholder:text-[#242224]" placeholder="Loan Name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} />
+            <input type="text" className="border border-black p-2 rounded placeholder:text-[#242224]" placeholder="Interest Rate" value={formData.rate} onChange={(e) => setFormData({ ...formData, rate: e.target.value })} />
+            <input type="text" className="border border-black p-2 rounded placeholder:text-[#242224]" placeholder="Tenure" value={formData.tenure} onChange={(e) => setFormData({ ...formData, tenure: e.target.value })} />
+            <textarea className="border border-black p-2 rounded placeholder:text-[#242224]" placeholder="Description" value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })} />
+            <button onClick={handleSubmit} className="bg-[#242224] text-[#FFFFFF] py-2 rounded">
               {editIndex !== null ? "Update Offer" : "Submit"}
             </button>
           </div>

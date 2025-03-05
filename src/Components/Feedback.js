@@ -11,17 +11,17 @@ const Feedback = () => {
     { name: "Neha", reviews: "Got my loan approved within a few days. Great service!", rating: 4 }
   ];
 
-  const [reviews, setReviews] = useState(initialFeedback);
+  const [reviews] = useState(initialFeedback);
 
   return (
-    <div className="mt-4 min-h-screen">
+    <div className="h-full p-4 bg-[#FFF6F7]">
       <div className="mx-auto p-2 relative">
         <h1 className="text-3xl font-bold text-[#1e3a5f]">Customer Reviews</h1>
         <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {reviews.map((views, index) => (
             <Card
               key={index}
-              className="border border-[#b0bec5] transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+              className="ml-2 border border-black shadow-md transition-transform duration-300 ease-in-out rounded-[10px]  font-roboto"
             >
               <CardBody>
                 <CardTitle className="text-[#333] text-xl font-semibold text-center">

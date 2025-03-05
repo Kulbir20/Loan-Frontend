@@ -34,7 +34,7 @@ const LoanRequest = () => {
         : loandata.filter((loan) => loan.status === selectedStatus);
 
     return (
-        <div className="container mx-auto mt-4 px-4">
+        <div className="container mx-auto p-4 bg-[#FFF6F7] px-4">
             <h1 className="text-center text-dark mb-6 text-2xl sm:text-4xl font-bold">
                 Loan Requests
             </h1>
@@ -56,8 +56,8 @@ const LoanRequest = () => {
 
            
             <div className="overflow-x-auto w-full">
-                <table className="w-full min-w-max border border-gray-300 bg-white rounded-lg table-auto">
-                    <thead className="bg-gray-800 text-white text-center text-sm sm:text-base">
+                <table className="w-full min-w-max border border-black bg-white rounded-lg table-auto">
+                    <thead className="bg-[#242224] text-[#FFFFFF] text-center text-sm sm:text-base">
                         <tr>
                             <th className="px-3 py-2">S.No</th>
                             <th className="px-3 py-2">First Name</th>

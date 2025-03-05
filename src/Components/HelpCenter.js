@@ -40,14 +40,14 @@ const HelpCenter = () => {
   };
 
   return (
-    <div className="mt-4 min-h-screen">
+    <div className="h-full p-4 bg-[#FFF6F7]">
       <div className="mx-auto p-2 relative">
         <h1 className="text-3xl font-bold text-[#1e3a5f]">Help Center</h1>
         <div className="mt-5 flex flex-wrap justify-center md:justify-start">
           {queries.map((user, index) => (
             <Card
               key={index}
-              className="border border-[#b0bec5] ml-4 mb-3 w-full sm:w-80 md:w-80 transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+              className="border border-black shadow-md ml-4 mb-3 w-full sm:w-80 md:w-80 transition-transform duration-300 ease-in-out  rounded-[10px] font-roboto"
             >
               <CardBody>
                 <CardTitle className="text-[#333] text-xl font-semibold">
@@ -60,7 +60,7 @@ const HelpCenter = () => {
            
                 <button
                   onClick={() => openModal(index)}
-                  className="bg-[#1cbdc1] border-1 px-3 py-1 text-black text-[1.1rem] rounded-md mt-2 hover:bg-white transition-all ml-auto block"
+                  className="bg-[#242224] border-1 px-3 py-1 text-[#FFFFFF] text-[1.1rem] rounded-md mt-2 transition-all ml-auto block"
                 >
                   Reply
                 </button>
@@ -93,16 +93,16 @@ const HelpCenter = () => {
             value={currentReply}
             onChange={(e) => setCurrentReply(e.target.value)}
             placeholder="Enter your reply..."
-            className="w-full p-2 border border-gray-400 rounded-md"
+            className="w-full p-2 border border-black placeholder:text-[#242224] rounded-md"
           />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={closeModal}>
+          <button className="bg-[#E21D27] border-1 px-3 py-1 text-[#FFFFFF] text-[1.1rem] rounded-md mt-2 transition-all ml-auto block" onClick={closeModal}>
             Cancel
-          </Button>
-          <Button variant="primary" onClick={handleReply}>
+          </button>
+          <button className="bg-[#242224] border-1 px-3 py-1 text-[#FFFFFF] text-[1.1rem] rounded-md mt-2 transition-all ml-auto block" onClick={handleReply}>
             Submit Reply
-          </Button>
+          </button>
         </Modal.Footer>
       </Modal>
     </div>

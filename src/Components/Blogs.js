@@ -71,12 +71,12 @@ const Blogs = () => {
     };
 
     return (
-        <div className="mt-4 min-h-screen p-4">
+        <div className="h-full p-4 bg-[#FFF6F7]">
             <div className="container mx-auto">
                 <h1 className="text-3xl font-bold text-[#1e3a5f] text-center">Blogs</h1>
                 <div className="flex justify-center mt-4">
                     <button
-                        className="bg-[#1cbdc1] text-white px-4 py-2 rounded-lg font-bold"
+                        className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded-lg font-bold"
                         onClick={handleAddNew}
                     >
                         Add New Blog
@@ -85,7 +85,7 @@ const Blogs = () => {
 
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {blogs.map((blog, index) => (
-                        <Card key={index} className="w-full shadow-lg rounded-lg overflow-hidden">
+                        <Card key={index} className="border border-black shadow-md w-full rounded-lg overflow-hidden">
                             <CardBody className="p-4">
                                 <div className="flex flex-wrap justify-center gap-2">
                                     {blog.images.map((image, imgIndex) => (
@@ -101,13 +101,13 @@ const Blogs = () => {
                                 <CardText className="text-gray-600">{blog.description}</CardText>
                                 <div className="flex justify-between mt-4">
                                     <button
-                                        className="bg-[#1cbdc1] text-white px-3 py-1 rounded-md font-semibold"
+                                        className="bg-[#242224] text-[#FFFFFF] px-3 py-1 rounded-md font-semibold"
                                         onClick={() => handleEdit(index)}
                                     >
                                         Edit
                                     </button>
                                     <button
-                                        className="bg-red-500 text-white px-3 py-1 rounded-md font-semibold"
+                                        className="bg-[#E21D27] text-[#FFFFFF] px-3 py-1 rounded-md font-semibold"
                                         onClick={() => handleDelete(index)}
                                     >
                                         Delete
@@ -120,7 +120,15 @@ const Blogs = () => {
 
                 {isAdding && (
                     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
-                        <div className="p-6 bg-white rounded-lg shadow-lg w-full max-w-md">
+                        <div className="relative p-6 bg-white rounded-lg shadow-lg w-full max-w-md">
+                            {/* Close Button */}
+                            <button
+                                className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-2xl font-bold"
+                                onClick={resetForm}
+                            >
+                                &times;
+                            </button>
+
                             <h2 className="text-xl font-bold text-center">
                                 {editingIndex !== null ? "Edit Blog" : "Add New Blog"}
                             </h2>
@@ -128,7 +136,7 @@ const Blogs = () => {
                             <label className="block mt-3">Title</label>
                             <input
                                 type="text"
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border border-black rounded"
                                 value={newBlog.title}
                                 onChange={(e) => setNewBlog({ ...newBlog, title: e.target.value })}
                             />
@@ -136,7 +144,7 @@ const Blogs = () => {
                             <label className="block mt-3">Description</label>
                             <textarea
                                 rows={3}
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded border-black"
                                 value={newBlog.description}
                                 onChange={(e) => setNewBlog({ ...newBlog, description: e.target.value })}
                             />
@@ -145,7 +153,7 @@ const Blogs = () => {
                             <input
                                 type="file"
                                 multiple
-                                className="w-full p-2 border rounded"
+                                className="w-full p-2 border rounded border-black"
                                 onChange={handleFileUpload}
                                 accept="image/*"
                             />
@@ -164,13 +172,13 @@ const Blogs = () => {
 
                             <div className="flex justify-between mt-4">
                                 <button
-                                    className="bg-[#1cbdc1] text-white px-4 py-2 rounded-lg"
+                                    className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded-lg"
                                     onClick={handleSaveNew}
                                 >
                                     {editingIndex !== null ? "Save Changes" : "Save"}
                                 </button>
                                 <button
-                                    className="bg-gray-400 text-white px-4 py-2 rounded-lg"
+                                    className="bg-[#E21D27] text-[#FFFFFF] px-4 py-2 rounded-lg"
                                     onClick={resetForm}
                                 >
                                     Cancel

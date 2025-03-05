@@ -65,15 +65,15 @@ const LoanUsers = () => {
 
 
   return (
-    <div className="w-full h-full bg-gradient-to-b from-[#5a7884] to-[#1f4959] flex flex-col items-center px-4 py-6">
+    <div className="w-full h-full bg-[#FFF6F7] flex flex-col items-center px-4 py-6">
 
-      <h1 className="text-white text-4xl font-bold mb-6 text-center">📋 List of Users</h1>
+      <h1 className="text-black text-4xl font-bold mb-6 text-center">📋 List of Users</h1>
 
       <div className="w-full max-w-4xl flex flex-wrap gap-4 justify-center items-center mb-6">
         <select
           value={selectData}
           onChange={(e) => setSelectData(e.target.value)}
-          className="bg-[#1cbdc1] hover:bg-[#159a9d] text-black px-2 py-2 rounded-lg w-full sm:w-auto"
+          className="bg-[#242224] text-[#FFFFFF] px-2 py-2 rounded-lg w-full sm:w-auto"
         >
           <option value="">Select User</option>
           {dropDowndata.length > 0 ? (
@@ -94,9 +94,9 @@ const LoanUsers = () => {
             placeholder="Enter User Name"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="p-2 rounded border border-gray-300 w-full sm:w-auto"
+            className="border border-black p-2 rounded w-full sm:w-auto placeholder:text-[#242224]"
           />
-          <button onClick={searchUser} className="bg-[#1cbdc1] text-black px-4 py-2 rounded">
+          <button onClick={searchUser} className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded">
             Search
           </button>
         </div>
@@ -104,8 +104,8 @@ const LoanUsers = () => {
 
 
       <div className="w-full max-w-5xl overflow-x-auto">
-        <table className="w-full border border-gray-300 bg-white rounded-lg min-w-[600px] ">
-          <thead className="bg-gray-800 text-white text-center border-collapse">
+        <table className="w-full border border-black bg-white rounded-lg min-w-[600px] ">
+          <thead className="bg-[#242224] text-[#ffffff] text-center border-collapse">
             <tr>
               <th className="px-4 py-2">Serial No.</th>
               <th className="px-4 py-2">Full Name</th>
@@ -147,14 +147,14 @@ const LoanUsers = () => {
         <div className="flex gap-4 mt-4">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            className="bg-[#1cbdc1] text-black px-4 py-2 rounded"
+            className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded"
             disabled={page === 1}
           >
             Prev
           </button>
           <button
             onClick={() => setPage((prev) => (prev < totalPages ? prev + 1 : prev))}
-            className="bg-[#1cbdc1] text-black px-4 py-2 rounded"
+            className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded"
             disabled={page === totalPages}
           >
             Next

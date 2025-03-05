@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { MdPolicy } from "react-icons/md";
 import {
+  ChartNoAxesCombined,
   CircleHelp,
   HandCoins,
   Home,
@@ -17,18 +18,33 @@ import { useNavigate } from "react-router-dom";
 const SideBar = () => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
+  const [activeMenu, setActiveMenu] = useState("Home"); 
 
   const onLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
 
+  const navItems = [
+    { icon: <Home />, text: "Home", path: "/home" },
+    { icon: <Users />, text: "List of Users", path: "/loanusers" },
+    { icon: <HandCoins />, text: "Loan Offers", path: "/offers" },
+    { icon: <Landmark />, text: "Loan Requests", path: "/loanrequest" },
+    { icon: <ChartNoAxesCombined />, text: "Daily Report", path: "/dailyreport" },
+    { icon: <CircleHelp />, text: "Help Center", path: "/helpcenter" },
+    { icon: <ReceiptText />, text: "Terms & Conditions", path: "/terms" },
+    { icon: <MailQuestion />, text: "FAQ", path: "/faq" },
+    { icon: <Logs />, text: "Blogs", path: "/blogs" },
+    { icon: <MessageCircleMore />, text: "Feedback", path: "/feedback" },
+    { icon: <MdPolicy />, text: "Policies", path: "/policies" },
+    { icon: <LogOut />, text: "Logout", onClick: onLogout },
+  ];
+
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
       <div
-        className={`min-h-screen bg-gradient-to-b from-[#2e425b] to-[#182c45] text-white p-4 flex flex-col transition-all duration-300 ${
-          collapsed ? `w-16{<Users/>}` : "w-66"
+        className={`min-h-screen bg-[#FFF6F7] border border-black shadow-2xl text-[#E21D27] p-4 flex flex-col transition-all duration-1000 ${
+          collapsed ? "w-16Users/>" : "w-62"
         }`}
         onMouseEnter={() => setCollapsed(false)}
         onMouseLeave={() => setCollapsed(true)}
@@ -38,81 +54,33 @@ const SideBar = () => {
         </h1>
 
         <nav className="flex flex-col gap-2">
-          <NavItem
-            icon={<Home />}
-            text="Home"
-            onClick={() => navigate("/home")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<Users />}
-            text="List of Users"
-            onClick={() => navigate("/loanusers")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<HandCoins />}
-            text="Loan Offers"
-            onClick={() => navigate("/offers")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<Landmark />}
-            text="Loan Requests"
-            onClick={() => navigate("/loanrequest")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<CircleHelp />}
-            text="Help Center"
-            onClick={() => navigate("/helpcenter")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<ReceiptText />}
-            text="Terms & Conditions"
-            onClick={() => navigate("/terms")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<MailQuestion />}
-            text="FAQ"
-            onClick={() => navigate("/faq")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<Logs />}
-            text="Blogs"
-            onClick={() => navigate("/blogs")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<MessageCircleMore />}
-            text="Feedback"
-            onClick={() => navigate("/feedback")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<MdPolicy />}
-            text="Policies"
-            onClick={() => navigate("/policies")}
-            collapsed={collapsed}
-          />
-          <NavItem
-            icon={<LogOut />}
-            text="Logout"
-            onClick={onLogout}
-            collapsed={collapsed}
-          />
+          {navItems.map((item, index) => (
+            <NavItem
+              key={index}
+              icon={item.icon}
+              text={item.text}
+              onClick={() => {
+                if (item.onClick) {
+                  item.onClick();
+                } else {
+                  setActiveMenu(item.text); // Set active menu item
+                  navigate(item.path);
+                }
+              }}
+              collapsed={collapsed}
+              isActive={activeMenu === item.text}
+            />
+          ))}
         </nav>
       </div>
     </div>
   );
 };
 
-const NavItem = ({ icon, text, onClick, collapsed }) => (
+const NavItem = ({ icon, text, onClick, collapsed, isActive }) => (
   <div
-    className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-all duration-200 hover:bg-gray-800`}
+    className={`flex items-center gap-4 p-3 rounded-lg cursor-pointer transition-all duration-200 
+                ${isActive ? "bg-[#E21D27] text-white" : "hover:bg-[#E21D27] hover:text-white"}`}
     onClick={onClick}
   >
     {icon}
@@ -121,4 +89,3 @@ const NavItem = ({ icon, text, onClick, collapsed }) => (
 );
 
 export default SideBar;
-

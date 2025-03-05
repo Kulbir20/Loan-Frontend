@@ -16,6 +16,8 @@ import Policies from "./Policies";
 import ProtectedRoute from "./ProtectedRoute";
 import { useEffect, useState } from "react";
 import ContentManager from "./ContentManager";
+import Home from "./Home";
+import DailyReport from "./DailyReport";
 
 const SiteRoutes = () => {
     const location = useLocation();
@@ -36,7 +38,7 @@ const SiteRoutes = () => {
                 <Routes>
                     <Route path="/" element={isAuthenticated ? <Navigate to="/home" replace /> : <Login />} />
 
-                    <Route path="/home" element={<ProtectedRoute><h2>Welcome Admin</h2></ProtectedRoute>} />
+                    <Route path="/home" element={<ProtectedRoute><Home/></ProtectedRoute>} />
                     <Route path="/loanusers" element={<ProtectedRoute><LoanUsers /></ProtectedRoute>} />
                     <Route path="/userinfo/:id" element={<ProtectedRoute><UserInfo /></ProtectedRoute>} />
                     <Route path="/loanoffers" element={<ProtectedRoute><LoanOffers /></ProtectedRoute>} />
@@ -49,6 +51,7 @@ const SiteRoutes = () => {
                     <Route path="/blogs" element={<ProtectedRoute><Blogs /></ProtectedRoute>} />
                     <Route path="/feedback" element={<ProtectedRoute><Feedback /></ProtectedRoute>} />
                     <Route path="/policies" element={<ProtectedRoute><Policies /></ProtectedRoute>} />
+                    <Route path="/dailyreport" element={<ProtectedRoute><DailyReport /></ProtectedRoute>} />
                     <Route path="/content-manager" element={<ProtectedRoute><ContentManager /></ProtectedRoute>} />
 
                     <Route path="*" element={<Navigate to="/" replace />} />

@@ -64,10 +64,10 @@ const Policies = () => {
   };
 
   return (
-    <div className="mt-4 min-h-screen">
+    <div className="h-full p-4 bg-[#FFF6F7]">
       <div className="mx-auto p-2 relative">
         <h1 className="text-3xl font-bold text-[#1e3a5f]">Loan Policies</h1>
-        <button className="mt-3 bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-[10px] cursor-pointer text-[17px] font-bold mr-4" onClick={handleAddNew}>
+        <button className="mt-3 bg-[#242224] text-[#FFFFFF] px-4 py-2 border-none rounded-[10px] cursor-pointer text-[17px] font-bold mr-4" onClick={handleAddNew}>
           Add New Term
         </button>
         {isReading && (
@@ -75,19 +75,19 @@ const Policies = () => {
             {policy.map((policies, index) => (
               <Card
                 key={index}
-                className="border border-[#b0bec5] transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+                className="ml-2 border border-black shadow-md transition-transform duration-300 ease-in-out rounded-[10px] font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">{policies.title}</CardTitle>
                   <CardText className="text-[#090909] text-md">{policies.description}</CardText>
                   <button 
-                    className="mt-2 bg-[#1cbdc1] text-white px-3 py-1 rounded-md cursor-pointer font-semibold mr-6"
+                    className="mt-2 bg-[#242224] text-[#FFFFFF] px-3 py-1 rounded-md cursor-pointer font-semibold mr-6"
                     onClick={() => handleEdit(index)}
                   >
                     Edit
                   </button>
                   <button 
-                    className="mt-2 bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer font-semibold"
+                    className="mt-2 bg-[#E21D27] text-[#FFFFFF] px-3 py-1 rounded-md cursor-pointer font-semibold"
                     onClick={() => handleDelete(index)}
                   >
                     Delete
@@ -114,7 +114,7 @@ const Policies = () => {
 
               <label className="block mt-3 text-lg">Title</label>
               <input 
-                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-100 focus:bg-white focus:border-[#1cbdc1] focus:ring-2 focus:ring-[#1cbdc1] outline-none shadow-sm transition-all duration-200"
+                className="w-full p-3 rounded-lg border border-black bg-gray-100 focus:bg-white ] focus:ring-2 outline-none shadow-sm transition-all duration-200 placeholder:text-[#242224]"
                 type="text"
                 placeholder="Enter title"
                 value={newTerm.title}
@@ -124,7 +124,7 @@ const Policies = () => {
               <label className="block mt-3 text-lg">Description</label>
               <textarea
                 rows={3}
-                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-100 focus:bg-white focus:border-[#1cbdc1] focus:ring-2 focus:ring-[#1cbdc1] outline-none shadow-sm transition-all duration-200 resize-none"
+                className="w-full p-3 rounded-lg border border-black placeholder:text-[#242224] bg-gray-100 focus:bg-white  focus:ring-2 outline-none shadow-sm transition-all duration-200 resize-none"
                 placeholder="Enter description"
                 value={newTerm.description}
                 onChange={(e) => setNewTerm({ ...newTerm, description: e.target.value })}
@@ -132,13 +132,13 @@ const Policies = () => {
 
               <div className="flex justify-center gap-3 mt-4">
                 <button
-                  className="bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
+                  className="bg-[#242224] text-[#FFFFFF] px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
                   onClick={isEditing ? handleSaveEdit : handleSaveNew}
                 >
                   {isEditing ? "Save Changes" : "Save"}
                 </button>
                 <button
-                  className="bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
+                  className="bg-[#E21D27] text-[#FFFFFF] px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
                   onClick={resetForm}
                 >
                   Cancel

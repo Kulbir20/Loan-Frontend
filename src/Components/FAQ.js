@@ -64,11 +64,11 @@ const FAQ = () => {
   };
 
   return (
-    <div className="mt-4 min-h-screen">
+    <div className="h-full p-4 bg-[#FFF6F7]">
       <div className="mx-auto p-2 relative">
         <h1 className="text-3xl font-bold text-[#1e3a5f]">Facts & Questions</h1>
         <button
-          className="mt-3 bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-[10px] cursor-pointer text-[17px] font-bold mr-4"
+          className="mt-3 bg-[#242224] text-[#ffffff] px-4 py-2 border-none rounded-[10px] cursor-pointer text-[17px] font-bold mr-4"
           onClick={handleAddNew}
         >
           Add New
@@ -79,7 +79,7 @@ const FAQ = () => {
             {faq.map((query, index) => (
               <Card
                 key={index}
-                className="border border-[#b0bec5] w-full transition-transform duration-300 ease-in-out hover:shadow-lg hover:bg-[#d0e8f2] rounded-[10px] shadow-md font-roboto"
+                className="ml-2 border border-black shadow-md w-full transition-transform duration-300 ease-in-out rounded-[10px]  font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">
@@ -89,14 +89,14 @@ const FAQ = () => {
                     <strong>Answer:</strong> {query.answers}
                   </CardText>
                   <button
-                    className="mt-2 bg-[#1cbdc1] text-white px-3 py-1 rounded-md cursor-pointer mr-6 font-semibold"
+                    className="mt-2 bg-[#242224] text-[#ffffff] px-3 py-1 rounded-md cursor-pointer mr-6 font-semibold"
                     onClick={() => handleEdit(index)}
                     aria-label={`Edit FAQ for "${query.questions}"`}
                   >
                     Edit
                   </button>
                   <button
-                    className="mt-2 bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer font-semibold"
+                    className="mt-2 bg-[#E21D27] text-[#ffffff] px-3 py-1 rounded-md cursor-pointer font-semibold"
                     onClick={() => handleDelete(index)}
                   >
                     Delete
@@ -123,7 +123,7 @@ const FAQ = () => {
 
               <label className="block mt-3 text-lg">Question</label>
               <input
-                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-100 focus:bg-white focus:border-[#1cbdc1] focus:ring-2 focus:ring-[#1cbdc1] outline-none shadow-sm transition-all duration-200"
+                className="w-full p-3 rounded-lg border border-black placeholder:text-[#242224] bg-gray-100 focus:bg-white focus:border-[#1cbdc1] focus:ring-2 focus:ring-[#1cbdc1] outline-none shadow-sm transition-all duration-200"
                 type="text"
                 placeholder="Enter question"
                 value={newTerm.questions}
@@ -133,7 +133,7 @@ const FAQ = () => {
               <label className="block mt-3 text-lg">Answer</label>
               <textarea
                 rows={3}
-                className="w-full p-3 rounded-lg border border-gray-300 bg-gray-100 focus:bg-white focus:border-[#1cbdc1] focus:ring-2 focus:ring-[#1cbdc1] outline-none shadow-sm transition-all duration-200 resize-none"
+                className="w-full p-3 rounded-lg border border-black placeholder:text-[#242224] bg-gray-100 focus:bg-white focus:border-[#1cbdc1] focus:ring-2 focus:ring-[#1cbdc1] outline-none shadow-sm transition-all duration-200 resize-none"
                 placeholder="Enter answer"
                 value={newTerm.answers}
                 onChange={(e) => setNewTerm({ ...newTerm, answers: e.target.value })}
@@ -141,14 +141,14 @@ const FAQ = () => {
 
               <div className="flex justify-center gap-3 mt-4">
                 <button
-                  className={`bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold ${!newTerm.questions || !newTerm.answers ? "opacity-50 cursor-not-allowed" : ""}`}
+                  className={`bg-[#242224] text-[#ffffff] px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold ${!newTerm.questions || !newTerm.answers ? "opacity-50 cursor-not-allowed" : ""}`}
                   onClick={isEditing ? handleSaveEdit : handleSaveNew}
                   disabled={!newTerm.questions.trim() || !newTerm.answers.trim()}
                 >
                   {isEditing ? "Save Changes" : "Save"}
                 </button>
                 <button
-                  className="bg-[#1cbdc1] text-white px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
+                  className="bg-[#E21D27] text-[#ffffff] px-4 py-2 border-none rounded-lg cursor-pointer text-[17px] font-bold"
                   onClick={resetForm}
                 >
                   Cancel
