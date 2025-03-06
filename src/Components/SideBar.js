@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { MdPolicy } from "react-icons/md";
 import {
   ChartNoAxesCombined,
@@ -13,15 +14,27 @@ import {
   ReceiptText,
   Users,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
-  const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
-  const [activeMenu, setActiveMenu] = useState("Home"); 
+  const location = useLocation();
+
+  // Retrieve active menu from localStorage or set default to "Home"
+  const [activeMenu, setActiveMenu] = useState(localStorage.getItem("activeMenu") || "Home");
+  const [collapsed, setCollapsed] = useState(true);
+
+  useEffect(() => {
+    // Update active menu based on the current URL path
+    const currentNavItem = navItems.find((item) => item.path === location.pathname);
+    if (currentNavItem) {
+      setActiveMenu(currentNavItem.text);
+      localStorage.setItem("activeMenu", currentNavItem.text); // Store in localStorage
+    }
+  }, [location.pathname]); // Runs whenever the path changes
 
   const onLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("activeMenu"); // Clear active menu on logout
     navigate("/");
   };
 
@@ -44,7 +57,7 @@ const SideBar = () => {
     <div className="flex min-h-screen">
       <div
         className={`min-h-screen bg-[#FFF6F7] border border-black shadow-2xl text-[#E21D27] p-4 flex flex-col transition-all duration-1000 ${
-          collapsed ? "w-16Users/>" : "w-62"
+          collapsed ? "w-16<Users/>" : "w-62"
         }`}
         onMouseEnter={() => setCollapsed(false)}
         onMouseLeave={() => setCollapsed(true)}
@@ -63,7 +76,8 @@ const SideBar = () => {
                 if (item.onClick) {
                   item.onClick();
                 } else {
-                  setActiveMenu(item.text); // Set active menu item
+                  setActiveMenu(item.text);
+                  localStorage.setItem("activeMenu", item.text); // Save active menu in localStorage
                   navigate(item.path);
                 }
               }}
