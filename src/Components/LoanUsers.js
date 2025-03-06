@@ -147,14 +147,14 @@ const LoanUsers = () => {
         <div className="flex gap-4 mt-4">
           <button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded"
+            className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded cursor-pointer"
             disabled={page === 1}
           >
             Prev
           </button>
           <button
             onClick={() => setPage((prev) => (prev < totalPages ? prev + 1 : prev))}
-            className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded"
+            className="bg-[#242224] text-[#FFFFFF] px-4 py-2 rounded cursor-pointer"
             disabled={page === totalPages}
           >
             Next
