@@ -1,28 +1,19 @@
-import { Users, Activity, TrendingDown } from "lucide-react";
+import { Users, Activity } from "lucide-react";
 import { Card, CardBody, CardText } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
-  const [data, setData] = useState({
-    totalUsers: { month: 1596, year: 268493 },
-    verifiedUsers: { month: 0, year: 133 },
-    instantLoanUsers: { month: 312, year: 4821 },
-    churnUsers: { month: 78, year: 1290 },
-  });
-
-  const [users] = useState({
-    dailyActiveUsers: "16",
-    weeklyActiveUsers: "45",
-    monthlyActiveUsers: "80",
-    loanCategoryClicks: "250",
-  });
-
+  const [data, setData] = useState({});  
+  const [users, setUsers] = useState({});  
   const [viewData, setViewData] = useState({
     totalUsers: "month",
     verifiedUsers: "month",
     instantLoanUsers: "month",
     churnUsers: "month",
   });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleToggle = (cardKey) => {
     setViewData((prev) => ({
@@ -31,26 +22,59 @@ const Home = () => {
     }));
   };
 
+  const dashboardData = async () => {
+    try {
+      const resp = await axios.get("http://localhost:5000/api/admin/getdashboard");
+      console.log(resp.data); 
+  
+      const { result } = resp.data;
+      const cleanedData = { ...result };
+      delete cleanedData.users; 
+  
+      setData(cleanedData); 
+      setUsers(result.users); 
+      setLoading(false); 
+    } catch (err) {
+      console.error("Error fetching dashboard data", err);
+      setError("Error fetching data");
+      setLoading(false);
+    }
+  };
+  
+
+  useEffect(() => {
+    dashboardData(); 
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+
+  if (error) {
+    return <div>{error}</div>; 
+  }
+
   return (
     <div className="p-8 bg-[#FFF6F7] h-full">
       <h1 className="text-3xl font-extrabold text-center text-gray-800 mb-6">
         Admin Dashboard
       </h1>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
         {Object.entries(data).map(([key, { month, year }]) => (
           <Card key={key} className="text-white rounded-lg shadow-xl hover:scale-105 transition-transform duration-300">
             <CardBody className="flex flex-col justify-between p-6">
               <div className="flex justify-between">
                 <button
-                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border  ${
-                    viewData[key] === "month" ? "bg-[#E21D27] text-[#FFFFFF]" : " text-[#FFFFFF] bg-[#242224] border border-white"
+                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border ${
+                    viewData[key] === "month" ? "bg-[#E21D27] text-[#FFFFFF]" : "text-[#FFFFFF] bg-[#242224] border border-white"
                   }`}
                   onClick={() => handleToggle(key)}
                 >
                   Month
                 </button>
                 <button
-                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border  ${
+                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border ${
                     viewData[key] === "year" ? "bg-[#E21D27] text-[#FFFFFF]" : "text-[#FFFFFF] bg-[#242224] border border-white"
                   }`}
                   onClick={() => handleToggle(key)}
@@ -60,8 +84,12 @@ const Home = () => {
               </div>
               <div className="flex flex-col items-start mt-4">
                 <Users className="mb-2 bg-[#E21D27] p-1 rounded-2xl w-7 h-7" />
-                <CardText className="text-4xl text-[#242224] font-bold">{viewData[key] === "month" ? month : year}</CardText>
-                <CardText className="text-sm opacity-80 mt-1 capitalize text-[#242224]">{key.replace(/([A-Z])/g, " $1")}</CardText>
+                <CardText className="text-4xl text-[#242224] font-bold">
+                  {viewData[key] === "month" ? month : year}
+                </CardText>
+                <CardText className="text-sm opacity-80 mt-1 capitalize text-[#242224]">
+                  {key.replace(/([A-Z])/g, " $1")}
+                </CardText>
               </div>
             </CardBody>
           </Card>
