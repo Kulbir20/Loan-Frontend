@@ -18,24 +18,25 @@ import {
 const SideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // Retrieve active menu from localStorage or set default to "Home"
   const [activeMenu, setActiveMenu] = useState(localStorage.getItem("activeMenu") || "Home");
   const [collapsed, setCollapsed] = useState(true);
 
   useEffect(() => {
-    // Update active menu based on the current URL path
     const currentNavItem = navItems.find((item) => item.path === location.pathname);
     if (currentNavItem) {
       setActiveMenu(currentNavItem.text);
-      localStorage.setItem("activeMenu", currentNavItem.text); // Store in localStorage
+      localStorage.setItem("activeMenu", currentNavItem.text); 
     }
-  }, [location.pathname]); // Runs whenever the path changes
+  }, [location.pathname]); 
 
   const onLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("activeMenu"); // Clear active menu on logout
-    navigate("/");
+    const confirm=window.confirm("Are You Sure To Logout")
+    if(confirm)
+    {
+      localStorage.removeItem("token");
+      localStorage.removeItem("activeMenu"); 
+      navigate("/");
+    }
   };
 
   const navItems = [
@@ -77,7 +78,7 @@ const SideBar = () => {
                   item.onClick();
                 } else {
                   setActiveMenu(item.text);
-                  localStorage.setItem("activeMenu", item.text); // Save active menu in localStorage
+                  localStorage.setItem("activeMenu", item.text); 
                   navigate(item.path);
                 }
               }}
