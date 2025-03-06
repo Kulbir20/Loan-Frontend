@@ -63,7 +63,7 @@ const Offers = () => {
       <div className="mx-auto p-2 relative">
         <h1>Select Loan Type</h1>
         <div className="flex items-center mt-4 justify-center">
-          <select value={selectedLoan} onChange={handleLoanChange} className="p-2 bg-[#242224] text-[#FFFFFF] rounded-md">
+          <select value={selectedLoan} onChange={handleLoanChange} className="p-2 bg-[#242224] text-[#FFFFFF] rounded-md cursor-pointer">
             {Object.keys(initialLoanOffers).map((loanType) => (
               <option key={loanType} value={loanType}>{loanType}</option>
             ))}

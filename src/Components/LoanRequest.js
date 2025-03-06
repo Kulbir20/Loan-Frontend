@@ -44,7 +44,7 @@ const LoanRequest = () => {
                 <select
                     value={selectedStatus}
                     onChange={(e) => setSelectedStatus(e.target.value)}
-                    className="border border-black sm:w-44 h-10 rounded-lg px-3"
+                    className="border border-black sm:w-44 h-10 rounded-lg px-3 cursor-pointer"
                 >
                     {chooseStatus.map((item, index) => (
                         <option key={index} value={item}>

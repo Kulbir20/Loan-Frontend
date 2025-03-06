@@ -73,7 +73,7 @@ const LoanUsers = () => {
         <select
           value={selectData}
           onChange={(e) => setSelectData(e.target.value)}
-          className="bg-[#242224] text-[#FFFFFF] px-2 py-2 rounded-lg w-full sm:w-auto"
+          className="bg-[#242224] text-[#FFFFFF] px-2 py-2 rounded-lg w-full sm:w-auto cursor-pointer"
         >
           <option value="">Select User</option>
           {dropDowndata.length > 0 ? (

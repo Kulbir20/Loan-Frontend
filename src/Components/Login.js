@@ -34,7 +34,7 @@ const Login = () => {
     return (
         <div className="w-full h-screen flex justify-center items-center bg-gradient-to-b from-[#2e425b] to-[#182c45]">
             <div className="bg-white/20 bg-opacity-20 p-6 rounded-xl shadow-md flex flex-col gap-4 w-[22rem] max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg text-center border border-white/30">
-                <div className="text-white bg-orange-500 rounded-full w-12 h-12 flex items-center justify-center text-2xl mx-auto">
+                <div className="text-white bg-[#E21D27] rounded-full w-12 h-12 flex items-center justify-center text-2xl mx-auto">
                     A
                 </div>
                 <h4 className="text-white text-lg sm:text-xl font-semibold">Admin Login</h4>
@@ -65,7 +65,7 @@ const Login = () => {
                 </div>
                 <button 
                     onClick={onLogin} 
-                    className="bg-teal-500 text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-teal-700 transition mt-3"
+                    className="bg-[#242224] text-white px-6 py-3 rounded-full text-lg font-bold hover:bg-[#E21D27] transition mt-3"
                 >
                     Login
                 </button>
