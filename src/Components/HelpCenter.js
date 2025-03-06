@@ -47,7 +47,7 @@ const HelpCenter = () => {
           {queries.map((user, index) => (
             <Card
               key={index}
-              className="border border-black shadow-md ml-4 mb-3 w-full sm:w-80 md:w-80 transition-transform duration-300 ease-in-out  rounded-[10px] font-roboto"
+              className="border border-black shadow-md ml-4 mb-3 w-full sm:w-80 md:w-80 hover:scale-105 transition-transform duration-300 ease-in-out  rounded-[10px] font-roboto"
             >
               <CardBody>
                 <CardTitle className="text-[#333] text-xl font-semibold">

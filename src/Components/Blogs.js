@@ -86,7 +86,7 @@ const Blogs = () => {
 
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {blogs.map((blog, index) => (
-                        <Card key={index} className="border border-black shadow-md w-full rounded-lg overflow-hidden">
+                        <Card key={index} className="border border-black shadow-xl hover:scale-105 transition-transform duration-300 w-full rounded-lg overflow-hidden">
                             <CardBody className="p-4">
                                 <div className="flex flex-wrap justify-center gap-2">
                                     {blog.images.map((image, imgIndex) => (

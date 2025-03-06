@@ -67,7 +67,7 @@ const Terms = () => {
             {tnc.map((terms, index) => (
               <Card
                 key={index}
-                className=" ml-4 border border-black shadow-md p-2 mb-3 w-full sm:w-80 lg:w-72 transition-transform duration-300 ease-in-out rounded-[10px] font-roboto"
+                className=" ml-4 border border-black shadow-md p-2 mb-3 w-full sm:w-80 lg:w-72 hover:scale-105 transition-transform duration-300 ease-in-out rounded-[10px] font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">{terms.title}</CardTitle>

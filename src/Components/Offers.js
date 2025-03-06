@@ -76,7 +76,7 @@ const Offers = () => {
 
       <div className="mt-4 flex flex-wrap">
         {offers.map((offer, index) => (
-          <Card key={index} className="ml-4 mb-3 w-80 border border-black shadow-md p-2">
+          <Card key={index} className="ml-4 mb-3 w-80 border border-black shadow-xl hover:scale-105 transition-transform duration-300 p-2">
             <CardBody>
               <CardTitle>{offer.name}</CardTitle>
               <CardText>

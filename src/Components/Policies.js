@@ -75,7 +75,7 @@ const Policies = () => {
             {policy.map((policies, index) => (
               <Card
                 key={index}
-                className="ml-2 border border-black shadow-md transition-transform duration-300 ease-in-out rounded-[10px] font-roboto"
+                className="ml-2 border border-black shadow-xl hover:scale-105 transition-transform duration-300 ease-in-out rounded-[10px] font-roboto"
               >
                 <CardBody>
                   <CardTitle className="text-[#333] text-xl font-semibold">{policies.title}</CardTitle>
