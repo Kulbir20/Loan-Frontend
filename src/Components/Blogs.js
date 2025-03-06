@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, CardBody, CardTitle, CardText } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([
@@ -32,7 +33,7 @@ const Blogs = () => {
 
     const handleSaveNew = () => {
         if (!newBlog.title.trim() || !newBlog.description.trim()) {
-            alert("Please enter both title and description.");
+            toast.warn("Please enter both title and description.");
             return;
         }
         if (editingIndex !== null) {

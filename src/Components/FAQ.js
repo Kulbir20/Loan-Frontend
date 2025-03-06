@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, CardBody, CardText, CardTitle } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const FAQ = () => {
   const Queries = [
@@ -40,7 +41,7 @@ const FAQ = () => {
 
   const handleSaveNew = () => {
     if (!newTerm.questions.trim() || !newTerm.answers.trim()) {
-      alert("Please enter both question and answer.");
+      toast.info("Please enter both question and answer.");
       return;
     }
 
