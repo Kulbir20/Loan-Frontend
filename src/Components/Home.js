@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const Home = () => {
-  const [data, setData] = useState({});  
-  const [users, setUsers] = useState({});  
+  const [data, setData] = useState({});
+  const [users, setUsers] = useState({});
   const [viewData, setViewData] = useState({
     totalUsers: "month",
     verifiedUsers: "month",
@@ -25,33 +25,38 @@ const Home = () => {
   const dashboardData = async () => {
     try {
       const resp = await axios.get("http://localhost:5000/api/admin/getdashboard");
-      console.log(resp.data); 
-  
+      console.log(resp.data);
+
       const { result } = resp.data;
       const cleanedData = { ...result };
-      delete cleanedData.users; 
-  
-      setData(cleanedData); 
-      setUsers(result.users); 
-      setLoading(false); 
+      delete cleanedData.users;
+
+      setData(cleanedData);
+      setUsers(result.users);
+      setLoading(false);
     } catch (err) {
       console.error("Error fetching dashboard data", err);
-      setError("Error fetching data");
+      // setError("Error fetching data");
       setLoading(false);
     }
   };
-  
+
 
   useEffect(() => {
-    dashboardData(); 
+    dashboardData();
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; 
+    return(
+    <div class="flex flex-row text-center justify-center relative top-60 gap-2">
+      <div class="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
+      <div class="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
+      <div class="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
+    </div>)
   }
 
   if (error) {
-    return <div>{error}</div>; 
+    return <div>{error}</div>;
   }
 
   return (
@@ -66,17 +71,15 @@ const Home = () => {
             <CardBody className="flex flex-col justify-between p-6">
               <div className="flex justify-between">
                 <button
-                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border ${
-                    viewData[key] === "month" ? "bg-[#E21D27] text-[#FFFFFF]" : "text-[#FFFFFF] bg-[#242224] border border-white"
-                  }`}
+                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border ${viewData[key] === "month" ? "bg-[#E21D27] text-[#FFFFFF]" : "text-[#FFFFFF] bg-[#242224] border border-white"
+                    }`}
                   onClick={() => handleToggle(key)}
                 >
                   Month
                 </button>
                 <button
-                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border ${
-                    viewData[key] === "year" ? "bg-[#E21D27] text-[#FFFFFF]" : "text-[#FFFFFF] bg-[#242224] border border-white"
-                  }`}
+                  className={`px-4 py-2 text-sm font-semibold rounded-full transition-all duration-300 border ${viewData[key] === "year" ? "bg-[#E21D27] text-[#FFFFFF]" : "text-[#FFFFFF] bg-[#242224] border border-white"
+                    }`}
                   onClick={() => handleToggle(key)}
                 >
                   Year

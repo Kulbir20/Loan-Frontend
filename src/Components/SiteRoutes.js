@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import ContentManager from "./ContentManager";
 import Home from "./Home";
 import DailyReport from "./DailyReport";
+import ManageNotification from "./ManageNotification";
 
 const SiteRoutes = () => {
     const location = useLocation();
@@ -53,6 +54,7 @@ const SiteRoutes = () => {
                     <Route path="/policies" element={<ProtectedRoute><Policies /></ProtectedRoute>} />
                     <Route path="/dailyreport" element={<ProtectedRoute><DailyReport /></ProtectedRoute>} />
                     <Route path="/content-manager" element={<ProtectedRoute><ContentManager /></ProtectedRoute>} />
+                    <Route path="/manage-notification" element={<ProtectedRoute><ManageNotification/></ProtectedRoute>} />
 
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
