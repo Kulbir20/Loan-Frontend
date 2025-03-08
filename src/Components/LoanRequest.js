@@ -34,7 +34,7 @@ const LoanRequest = () => {
         : loandata.filter((loan) => loan.status === selectedStatus);
 
     return (
-        <div className="container mx-auto p-4 bg-[#FFF6F7] px-4">
+        <div className=" mx-auto p-4 bg-[#FFF6F7] px-4 h-screen">
             <h1 className="text-center text-dark mb-6 text-2xl sm:text-4xl font-bold">
                 Loan Requests
             </h1>
@@ -59,26 +59,24 @@ const LoanRequest = () => {
                 <table className="w-full min-w-max border border-black bg-white rounded-lg table-auto">
                     <thead className="bg-[#242224] text-[#FFFFFF] text-center text-sm sm:text-base">
                         <tr>
-                            <th className="px-3 py-2">S.No</th>
-                            <th className="px-3 py-2">First Name</th>
-                            <th className="px-3 py-2">Last Name</th>
-                            <th className="px-3 py-2">Number</th>
-                            <th className="px-3 py-2">Email</th>
-                            <th className="px-3 py-2">Status</th>
-                            <th className="px-3 py-2">Action</th>
+                            <th className="px-3 py-2 border border-white">S.No</th>
+                            <th className="px-3 py-2 border border-white">Full Name</th>
+                            <th className="px-3 py-2 border border-white">Number</th>
+                            <th className="px-3 py-2 border border-white">Email</th>
+                            <th className="px-3 py-2 border border-white">Status</th>
+                            <th className="px-3 py-2 border border-white">Action</th>
                         </tr>
                     </thead>
                     <tbody className="text-center text-sm sm:text-base">
                         {filteredLoans.length > 0 ? (
                             filteredLoans.map((loan, index) => (
                                 <tr key={loan.id} className="border-t">
-                                    <td className="px-3 py-2">{index + 1}</td>
-                                    <td className="px-3 py-2">{loan.UserId?.FirstName || "N/A"}</td>
-                                    <td className="px-3 py-2">{loan.UserId?.LastName || "N/A"}</td>
-                                    <td className="px-3 py-2">{loan.UserId?.ContactNumber || "N/A"}</td>
-                                    <td className="px-3 py-2">{loan.UserId?.Email || "N/A"}</td>
-                                    <td className="px-3 py-2">{loan.status || "N/A"}</td>
-                                    <td className="px-3 py-2">
+                                    <td className="px-3 py-2 border border-black">{index + 1}</td>
+                                    <td className="px-3 py-2 border border-black">{loan.UserId?.FullName || "N/A"}</td>
+                                    <td className="px-3 py-2 border border-black">{loan.UserId?.ContactNumber || "N/A"}</td>
+                                    <td className="px-3 py-2 border border-black">{loan.UserId?.Email || "N/A"}</td>
+                                    <td className="px-3 py-2 border border-black">{loan.status || "N/A"}</td>
+                                    <td className="px-3 py-2 border border-black">
                                         <Link to={`/viewdetails/${loan._id}`} className="text-blue-500 underline">
                                             View Details
                                         </Link>

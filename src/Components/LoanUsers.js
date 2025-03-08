@@ -107,22 +107,22 @@ const LoanUsers = () => {
         <table className="w-full border border-black bg-white rounded-lg min-w-[600px] ">
           <thead className="bg-[#242224] text-[#ffffff] text-center border-collapse">
             <tr>
-              <th className="px-4 py-2">Serial No.</th>
-              <th className="px-4 py-2">Full Name</th>
-              <th className="px-4 py-2">Contact</th>
-              <th className="px-4 py-2">Email</th>
-              <th className="px-4 py-2">Pan Card</th>
-              <th className="px-4 py-2">Adhaar Card</th>
+              <th className="px-4 py-2 border border-white">Serial No.</th>
+              <th className="px-4 py-2 border border-white">Full Name</th>
+              <th className="px-4 py-2 border border-white">Contact</th>
+              <th className="px-4 py-2 border border-white">Email</th>
+              <th className="px-4 py-2 border border-white">Pan Card</th>
+              <th className="px-4 py-2 border border-white">Adhaar Card</th>
             </tr>
           </thead>
           <tbody className="text-center">
             {(searchdata ? [searchdata] : users).map((item, index) => (
               <tr key={index} className="border-t">
-                <td className="px-4 py-2">{(page - 1) * itemsPerPage + index + 1}</td>
-                <td className="px-4 py-2">{item.fullName}</td>
-                <td className="px-4 py-2">{item.phoneNumber}</td>
-                <td className="px-4 py-2">{item.email}</td>
-                <td className="px-4 py-2">
+                <td className="px-4 py-2 border border-black">{(page - 1) * itemsPerPage + index + 1}</td>
+                <td className="px-4 py-2 border border-black">{item.fullName}</td>
+                <td className="px-4 py-2 border border-black">{item.phoneNumber}</td>
+                <td className="px-4 py-2 border border-black">{item.email}</td>
+                <td className="px-4 py-2 border border-black">
                   {visible[index]?.panNumber ? item.panNumber : "****"}
                   <button className="ml-2" onClick={() => toggleVisibility(index, "panNumber")}>
                     {visible[index]?.panNumber ? <FaEyeSlash /> : <FaEye />}
