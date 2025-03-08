@@ -36,9 +36,9 @@ const Login = () => {
             {/* Left Section - Image */}
             <div className="flex items-center justify-center ">
                 <img 
-                    src="/images/primary-logo.png-1713592917.png" 
+                    src="/images/mexmon.png" 
                     alt="Logo" 
-                    className="max-w-[70%] md:max-w-[60%] lg:max-w-[90%] h-auto"
+                    className="max-w-[70%] md:max-w-[60%] lg:max-w-[70%] h-auto hover:scale-105"
                 />
             </div>
 

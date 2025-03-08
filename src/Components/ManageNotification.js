@@ -99,7 +99,7 @@ const ManageNotification = () => {
                 <select 
                     value={filter} 
                     onChange={(e) => setFilter(e.target.value)} 
-                    className="w-full md:w-auto p-2 border border-black rounded-lg bg-[#242224] text-white"
+                    className="w-full p-2 border border-black rounded-lg bg-[#242224] text-white"
                 >
                     <option value="All">All</option>
                     <option value="Scheduled">Scheduled</option>
@@ -122,7 +122,12 @@ const ManageNotification = () => {
     </tr>
 </thead>
 <tbody>
-    {filteredNotifications.map((notification, index) => (
+{filteredNotifications.length === 0 ? (
+    <tr>
+        <td colSpan="8" className="text-center py-4">No Notifications Found</td>
+    </tr>
+) : (
+    filteredNotifications.map((notification, index) => (
         <tr key={index} className="text-center border border-black">
             <td className="p-2 border border-black">{notification.user}</td>
             <td className="p-2 border border-black">{notification.title}</td>
@@ -142,7 +147,8 @@ const ManageNotification = () => {
                 </td>
             )}
         </tr>
-    ))}
+    ))
+)}
 </tbody>
 
                 </table>
