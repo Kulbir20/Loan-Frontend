@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { MdPolicy } from "react-icons/md";
+import { MdOutlineNotificationsActive, MdPolicy } from "react-icons/md";
 import {
   ChartNoAxesCombined,
   CircleHelp,
@@ -47,6 +47,7 @@ const SideBar = () => {
     { icon: <ChartNoAxesCombined />, text: "Daily Report", path: "/dailyreport" },
     { icon: <CircleHelp />, text: "Help Center", path: "/helpcenter" },
     { icon: <ReceiptText />, text: "Terms & Conditions", path: "/terms" },
+    { icon: <MdOutlineNotificationsActive className="w-6 h-6"/>, text: "Manage Notification", path: "/manage-notification" },
     { icon: <MailQuestion />, text: "FAQ", path: "/faq" },
     { icon: <Logs />, text: "Blogs", path: "/blogs" },
     { icon: <MessageCircleMore />, text: "Feedback", path: "/feedback" },
