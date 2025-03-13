@@ -39,30 +39,6 @@ const LoanRequest = () => {
       ? loandata
       : loandata.filter((loan) => loan.status === selectedStatus);
 
-  const handleStatusChange = async (loanId, newStatus) => {
-    try {
-      const token = localStorage.getItem("token");
-      const resp = await axios.put(
-        `http://localhost:5000/api/admin/update-loan-status/${loanId}`,
-        { status: newStatus },
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-
-      if (resp.status === 200) {
-        setLoanData((prevData) =>
-          prevData.map((loan) =>
-            loan._id === loanId ? { ...loan, status: newStatus } : loan
-          )
-        );
-        console.log("Loan status updated successfully");
-      }
-    } catch (err) {
-      console.error("Error updating loan status:", err.response?.data || err.message);
-    }
-  };
-
   if (loading) {
     return (
       <div className="flex flex-row text-center justify-center relative top-60 gap-2">
