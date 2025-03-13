@@ -58,7 +58,7 @@ const DailyReport = () => {
   ];
 
   return (
-    <div className="p-6 bg-[#FFF6F7] min-h-screen">
+    <div className="p-6 bg-[#FFF6F7] h-full">
       <div className="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6">
         <div className="bg-white shadow-lg p-6 rounded-lg flex-1">
           <h3 className="text-lg font-semibold mb-4">Daily Signup User Count</h3>

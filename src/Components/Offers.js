@@ -8,6 +8,7 @@ const Offers = () => {
   const [selectedLoan, setSelectedLoan] = useState("Home Loan");
   const [offers, setOffers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [formData, setFormData] = useState({
     loanName: "",
     loanEligibility: [{ Description: "", value: "" }],
@@ -17,10 +18,15 @@ const Offers = () => {
 
   const fetchAllLoanTypes = async () => {
     try {
+      setLoading(true)
       const response = await axios.get("http://localhost:5000/api/admin/get-all-loan-types");
       setLoanTypes(response.data.loanTypes);
     } catch (err) {
       console.error("Error fetching loan types", err);
+    }
+    finally
+    {
+      setLoading(false)
     }
   };
 
@@ -50,12 +56,17 @@ const Offers = () => {
 
   const fetchLoanDetails = async (loanType) => {
     try {
+      setLoading(true)
       const response = await axios.get(`http://localhost:5000/api/admin/check-loan-details/${loanType}`);
       console.log(response.data); 
       setOffers(Array.isArray(response.data) ? response.data : [response.data]);
     } catch (err) {
       console.error("Error fetching loan details", err);
       setOffers([]);
+    }
+    finally
+    {
+      setLoading(false)
     }
   };
   
@@ -149,6 +160,15 @@ const Offers = () => {
     });
     setEditingLoan(null); 
   };
+
+  if (loading) {
+    return(
+    <div className="flex flex-row text-center justify-center relative top-60 gap-2">
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
+    </div>)
+  }
 
   return (
     <div className="h-full p-6 bg-[#FFF6F7]">

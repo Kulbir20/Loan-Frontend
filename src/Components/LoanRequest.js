@@ -3,20 +3,18 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const LoanRequest = () => {
-  const chooseStatus = ["All", "pending", "Active", "Closed"];
+  const chooseStatus = ["All", "Pending", "Active", "Closed"];
   const [selectedStatus, setSelectedStatus] = useState("All");
   const [loandata, setLoanData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchLoanUsers = async () => {
     try {
-        setLoading(true)
-        const token = localStorage.getItem("token");
-      const resp = await axios.get("http://localhost:5000/api/admin/loan-requests",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      setLoading(true);
+      const token = localStorage.getItem("token");
+      const resp = await axios.get("http://localhost:5000/api/admin/loan-requests", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       if (resp.status === 200) {
         console.log("Loan Applications Found");
         setLoanData(resp.data.requests);
@@ -26,9 +24,8 @@ const LoanRequest = () => {
       }
     } catch (err) {
       console.error("Error fetching loan users:", err.response?.data || err.message);
-    }
-    finally{
-        setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -36,19 +33,45 @@ const LoanRequest = () => {
     fetchLoanUsers();
   }, []);
 
-  const filteredLoans = selectedStatus === "All"
-    ? loandata
-    : loandata.filter((loan) => loan.status === selectedStatus);
+  // Filter loan data by selected status
+  const filteredLoans =
+    selectedStatus === "All"
+      ? loandata
+      : loandata.filter((loan) => loan.status === selectedStatus);
 
-    if (loading) {
-        return(
-        <div className="flex flex-row text-center justify-center relative top-60 gap-2">
-          <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
-          <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
-          <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
-        </div>)
+  const handleStatusChange = async (loanId, newStatus) => {
+    try {
+      const token = localStorage.getItem("token");
+      const resp = await axios.put(
+        `http://localhost:5000/api/admin/update-loan-status/${loanId}`,
+        { status: newStatus },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      if (resp.status === 200) {
+        setLoanData((prevData) =>
+          prevData.map((loan) =>
+            loan._id === loanId ? { ...loan, status: newStatus } : loan
+          )
+        );
+        console.log("Loan status updated successfully");
       }
-    
+    } catch (err) {
+      console.error("Error updating loan status:", err.response?.data || err.message);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="flex flex-row text-center justify-center relative top-60 gap-2">
+        <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
+        <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
+        <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto p-4 bg-[#FFF6F7] px-4 h-full">
