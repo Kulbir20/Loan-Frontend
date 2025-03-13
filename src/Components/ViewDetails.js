@@ -4,50 +4,51 @@ import { Card,} from "react-bootstrap";
 import { useParams } from "react-router";
 
 const ViewDetails = () => {
-    const { UserId } = useParams();
+    const { userId } = useParams();
     const [userdetails, setUserDetails] = useState(null);
 
     const fetchDetails = async () => {
         try {
-            const resp = await axios.get(`http://localhost:9000/api/user/userdetails/${UserId}`);
-            if (resp.status === 200) {
-                console.log(resp.data.details);
-                setUserDetails(resp.data.details);
-            } else {
-                console.log("User Details not Found");
-            }
+          const resp = await axios.get(`http://localhost:5000/api/admin/view-loan/${userId}`);
+          console.log(resp.data);  
+          if (resp.status === 200) {
+            console.log("Requests data:", resp.data.loanApplications);
+            setUserDetails(resp.data.loanApplications);
+          } else {
+            console.log("User Details not Found");
+          }
         } catch (err) {
-            console.log("Network error", err);
+          console.log("Network error", err);
         }
-    };
+      };
+      
 
     useEffect(() => {
-        if (UserId) {
+        if (userId) {
             fetchDetails();
         }
-    }, [UserId]);
+    }, [userId]);
 
     if (!userdetails) {
         return <div className="text-center mt-5">Loading...</div>;
     }
 
     return (
-        <div className="container mt-4">
+        <div className="container bg-[#FFF6F7] mt-4 h-full">
             <Card className="shadow-lg w-full min-h-screen">
                 <Card.Body>
-                    <Card.Title className="fs-5">
+                    <Card.Title className="fs-6">
                         <h1>Applicant Details</h1>
                     </Card.Title>
-                    <Card.Text className="fs-5 text-left">
-                        <strong>First Name: </strong>{userdetails.UserId?.FirstName || "N/A"}<br />
-                        <strong>Last Name: </strong>{userdetails.UserId?.LastName || "N/A"}<br />
-                        <strong>Email: </strong>{userdetails.UserId?.Email || "N/A"}<br />
-                        <strong>Phone Number: </strong>{userdetails.UserId?.ContactNumber || "N/A"}<br />
-                        <strong>PAN Card: </strong>{userdetails.UserId?.PanCard || "N/A"}<br />
-                        <strong>Adhaar Card: </strong>{userdetails.UserId?.AdhaarCard || "N/A"}<br />
-                        <strong>Bank Account No: </strong>{userdetails.BankAccNo || "N/A"}<br />
-                        <strong>IFSC Code: </strong>{userdetails.IfscCode || "N/A"}<br />
-                        <strong>Account Holder Name: </strong>{userdetails.AccountHolderName || "N/A"}<br />
+                    <Card.Text className="fs-6 text-left">
+                        <strong>Full Name: </strong>{userdetails.userId?.fullName || "N/A"}<br />
+                        <strong>Email: </strong>{userdetails.userId?.email || "N/A"}<br />
+                        <strong>Phone Number: </strong>{userdetails.userId?.phoneNumber || "N/A"}<br />
+                        <strong>PAN Card: </strong>{userdetails.userId?.panNumber || "N/A"}<br />
+                        <strong>Adhaar Card: </strong>{userdetails.userId?.aadharNumber || "N/A"}<br />
+                        <strong>Bank Account No: </strong>{userdetails.userId?.bankDetails?.accountNumber || "N/A"}<br />
+                        <strong>IFSC Code: </strong>{userdetails.userId?.bankDetails?.ifscCode || "N/A"}<br />
+                        <strong>Account Holder Name: </strong>{userdetails.userId?.bankDetails?.accountHolderName || "N/A"}<br />
                     </Card.Text>
                     <Card.Title className="fs-5">
                         <h1>Submited Documents</h1>

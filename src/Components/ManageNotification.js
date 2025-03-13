@@ -163,20 +163,20 @@ const ManageNotification = () => {
                             placeholder="User"
                             value={user}
                             onChange={(e) => setUser(e.target.value)}
-                            className="w-full p-2 border border-black rounded-lg mb-3"
+                            className="w-full p-2 border border-black rounded-lg mb-3 placeholder:text-black"
                         />
                         <input
                             type="text"
                             placeholder="Title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full p-2 border border-black rounded-lg mb-3"
+                            className="w-full p-2 border border-black rounded-lg mb-3 placeholder:text-black"
                         />
                         <textarea
                             placeholder="Message"
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
-                            className="w-full p-2 border border-black rounded-lg mb-3"
+                            className="w-full p-2 border border-black rounded-lg mb-3 placeholder:text-black"
                         />
                         <select value={type} onChange={(e) => setType(e.target.value)} className="w-full p-2 border border-black rounded-lg mb-3">
                             <option value="app">In App Notification</option>

@@ -14,6 +14,7 @@ const LoanUsers = () => {
   const [search, setSearch] = useState("");
   const [dropDowndata, setDropDownData] = useState(userdata);
   const [selectData, setSelectData] = useState("");
+  const [loading,setLoading]=useState(true);
 
   useEffect(() => {
     fetchUsers(page);
@@ -21,6 +22,7 @@ const LoanUsers = () => {
 
   const fetchUsers = async (selectedPage) => {
     try {
+      setLoading(true)
       const token = localStorage.getItem("token");
       const resp = await axios.get(
         `http://localhost:5000/api/admin/getusers?page=${selectedPage}&limit=${itemsPerPage}`,
@@ -36,11 +38,16 @@ const LoanUsers = () => {
     } catch (err) {
       console.error("Error fetching users:", err.message);
     }
+      finally
+      {
+        setLoading(false)
+      }
   };
 
   const searchUser = async () => {
     if (!selectData || !search) return;
     try {
+      setLoading(true)
       const resp = await axios.get("http://localhost:5000/api/admin/searchuser", {
         params: { field: selectData, value: search },
       });
@@ -50,6 +57,10 @@ const LoanUsers = () => {
       }
     } catch (err) {
       console.error("Error fetching data:", err.message);
+    }
+    finally
+    {
+      setLoading(false)
     }
   };
 
@@ -62,6 +73,16 @@ const LoanUsers = () => {
       },
     }));
   };
+
+  
+  if (loading) {
+    return(
+    <div className="flex flex-row text-center justify-center relative top-60 gap-2">
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
+    </div>)
+  }
 
 
   return (

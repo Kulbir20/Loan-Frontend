@@ -57,8 +57,8 @@ const SideBar = () => {
 
   return (
     <div className="flex min-h-screen">
-      <div
-        className={`min-h-screen bg-[#FFF6F7] border border-black shadow-2xl text-[#E21D27] p-4 flex flex-col transition-all duration-1000 ${
+      <div 
+        className={`min-h-screen  bg-[#FFF6F7] border border-black shadow-2xl text-[#E21D27] p-4 flex flex-col transition-all duration-1000 ${
           collapsed ? "w-16<Users/>" : "w-62"
         }`}
         onMouseEnter={() => setCollapsed(false)}

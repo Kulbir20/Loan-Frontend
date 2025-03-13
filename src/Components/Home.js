@@ -48,10 +48,10 @@ const Home = () => {
 
   if (loading) {
     return(
-    <div class="flex flex-row text-center justify-center relative top-60 gap-2">
-      <div class="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
-      <div class="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
-      <div class="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
+    <div className="flex flex-row text-center justify-center relative top-60 gap-2">
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce"></div>
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.3s]"></div>
+      <div className="w-4 h-4 rounded-full bg-[#E21D27] animate-bounce [animation-delay:-.5s]"></div>
     </div>)
   }
 

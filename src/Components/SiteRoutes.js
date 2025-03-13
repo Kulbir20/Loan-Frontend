@@ -45,7 +45,7 @@ const SiteRoutes = () => {
                     <Route path="/loanoffers" element={<ProtectedRoute><LoanOffers /></ProtectedRoute>} />
                     <Route path="/offers" element={<ProtectedRoute><Offers /></ProtectedRoute>} />
                     <Route path="/loanrequest" element={<ProtectedRoute><LoanRequest /></ProtectedRoute>} />
-                    <Route path="/viewdetails/:UserId" element={<ProtectedRoute><ViewDetails /></ProtectedRoute>} />
+                    <Route path="/viewdetails/:userId" element={<ProtectedRoute><ViewDetails /></ProtectedRoute>} />
                     <Route path="/helpcenter" element={<ProtectedRoute><HelpCenter /></ProtectedRoute>} />
                     <Route path="/terms" element={<ProtectedRoute><Terms /></ProtectedRoute>} />
                     <Route path="/faq" element={<ProtectedRoute><FAQ /></ProtectedRoute>} />
