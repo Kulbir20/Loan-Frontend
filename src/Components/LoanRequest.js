@@ -87,7 +87,7 @@ const LoanRequest = () => {
               filteredLoans.map((loan, index) => (
                 <tr key={loan._id} className="border-t">
                   <td className="px-3 py-2 border border-black">{index + 1}</td>
-                  <td className="px-3 py-2 border border-black">{loan.userId?.fullName || "N/A"}</td>
+                  <td className="px-3 py-2 border border-black">{loan.fullName || "N/A"}</td>
                   <td className="px-3 py-2 border border-black">{loan.userId?.phoneNumber || "N/A"}</td>
                   <td className="px-3 py-2 border border-black">{loan.userId?.email || "N/A"}</td>
                   <td className="px-3 py-2 border border-black">{loan.status || "N/A"}</td>
